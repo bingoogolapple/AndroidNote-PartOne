@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:baselineAligned="false"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <Button
+                android:layout_margin="2dp"
+                android:onClick="onClick"
+                android:id="@+id/btn_demo3_shehui"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="社会新闻"/>
+
+        <Button
+                android:layout_margin="2dp"
+                android:onClick="onClick"
+                android:id="@+id/btn_demo3_shenghuo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="生活新闻"/>
+
+        <Button
+                android:layout_margin="2dp"
+                android:onClick="onClick"
+                android:id="@+id/btn_demo3_junshi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="军事新闻"/>
+
+        <Button
+                android:onClick="onClick"
+                android:layout_margin="2dp"
+                android:id="@+id/btn_demo3_yule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="娱乐新闻"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+    </LinearLayout>
+
+</LinearLayout>

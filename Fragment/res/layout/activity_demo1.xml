@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:baselineAligned="false"
+              android:orientation="horizontal" >
+
+    <fragment
+            android:id="@+id/left_fragment"
+            android:name="com.bingoogol.fragment.demo1.LeftFragment"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+    </fragment>
+
+    <fragment
+            android:id="@+id/right_fragment"
+            android:name="com.bingoogol.fragment.demo1.RightFragment"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+    </fragment>
+
+</LinearLayout>

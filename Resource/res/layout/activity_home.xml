@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:gravity="center_horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="20dp">
+
+    <Button
+            android:text="Rectangle TextColorSelector"
+            android:textSize="20sp"
+            android:textColor="@color/text_selector"
+            android:background="@drawable/shape_rectangle"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:background="@drawable/shape_selector"
+            android:layout_marginBottom="10dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
+    <Button
+            android:background="@drawable/shape_line"
+            android:layout_marginBottom="10dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+    <Button
+            android:textColor="@color/text_selector"
+            android:background="@drawable/shape_gradient"
+            android:layout_marginBottom="10dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
+
+    <ImageView android:id="@+id/iv_animation"
+               android:src="@drawable/avator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+</LinearLayout>
