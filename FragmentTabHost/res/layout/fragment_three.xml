@@ -1,13 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="#500f"
-    android:orientation="vertical" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="three" />
-
-</LinearLayout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+             android:layout_height="match_parent">
+    <LinearLayout android:id="@+id/ll_three_one" android:layout_width="match_parent"
+                  android:layout_height="match_parent" android:orientation="vertical">
+        <Button android:id="@+id/btn_three_one" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="我是列表one，点击显示列表two"/>
+        <ListView android:id="@+id/lv_three_one" android:layout_width="match_parent"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/ll_three_two" android:visibility="gone" android:layout_width="match_parent"
+                  android:layout_height="match_parent" android:orientation="vertical">
+        <Button android:id="@+id/btn_three_two" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="我是列表two，点击显示列表one"/>
+        <ListView android:id="@+id/lv_three_two" android:layout_width="match_parent"
+                  android:layout_height="match_parent"/>
+    </LinearLayout>
+</FrameLayout>
