@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <TextView android:text="手机防盗" style="@style/text_title"/>
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="40.0dip">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:layout_marginTop="8dip" android:text="安全号码" android:textSize="18sp"/>
+        <TextView android:id="@+id/tv_lostfind_number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_marginLeft="5dip" android:layout_marginTop="8dip" android:text="5556" android:textSize="18sp"/>
+    </RelativeLayout>
+    <View android:layout_width="fill_parent" android:layout_height="1dip" android:layout_marginTop="3dip" android:background="@drawable/list_devider"/>
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="40.0dip">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:layout_marginTop="10dip" android:text="防盗保护是否开启" android:textSize="18sp"/>
+        <ImageView android:id="@+id/iv_lostfind_status" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_marginLeft="5dip" android:layout_marginTop="8dip" android:src="@drawable/unlock"/>
+    </RelativeLayout>
+    <View android:layout_width="fill_parent" android:layout_height="1dip" android:layout_marginTop="3dip" android:background="@drawable/list_devider"/>
+    <TextView android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginLeft="5dip" android:layout_marginTop="10dip" android:clickable="true" android:onClick="reEntrySetup" android:text="重新进入设置向导" android:textSize="18sp"/>
+    <View android:layout_width="fill_parent" android:layout_height="1dip" android:layout_marginTop="3dip" android:background="@drawable/list_devider"/>
+    <TextView style="@style/text_content" android:layout_width="fill_parent" android:background="#44000000" android:gravity="left" android:text="功能简介"/>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:layout_marginTop="10dip" android:orientation="horizontal">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/btn_star_big_on"/>
+        <TextView style="@style/text_content" android:paddingTop="5dip" android:text="GPS追踪: #*location*#"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:layout_marginTop="10dip" android:orientation="horizontal">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/btn_star_big_on"/>
+        <TextView style="@style/text_content" android:paddingTop="5dip" android:text="播放报警音乐: #*alarm*#"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:layout_marginTop="10dip" android:orientation="horizontal">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/btn_star_big_on"/>
+        <TextView style="@style/text_content" android:paddingTop="5dip" android:text="远程删除数据: #*wipedata*#"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:layout_marginTop="10dip" android:orientation="horizontal">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/btn_star_big_on"/>
+        <TextView style="@style/text_content" android:paddingTop="5dip" android:text="远程锁屏: #*lockscreen*#"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_horizontal"
+              android:background="@drawable/splash_bg"
+              android:id="@+id/ll_splash_main"
+              android:orientation="vertical">
+    <!--id命名规范：控件类型_控件在哪个布局文件里_控件的业务含义-->
+    <!--android中的颜色格式：ARGB-->
+    <TextView android:id="@+id/tv_splash_version"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textColor="#FF01B6F8"
+              android:textSize="20sp"
+              android:layout_marginTop="400dp"
+              android:text="@string/version_number"/>
+
+    <ProgressBar android:layout_marginTop="60dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -13,6 +13,9 @@ import cn.bingoogol.ftabhost.R;
 
 public class FragmentThree extends Fragment implements View.OnClickListener {
     private static final String TAG = "FragmentThree";
+    public static final int ONE = 1;
+    public static final int TWO = 2;
+    public static int currentTab = ONE;
     private View ll_three_one;
     private View ll_three_two;
     private ListView lv_three_one;
@@ -101,14 +104,33 @@ public class FragmentThree extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_three_one:
-                ll_three_two.setVisibility(View.VISIBLE);
-                ll_three_one.setVisibility(View.GONE);
+                changeToTwo();
                 break;
             case R.id.btn_three_two:
-                ll_three_one.setVisibility(View.VISIBLE);
-                ll_three_two.setVisibility(View.GONE);
+                changeToOne();
                 break;
         }
 
+    }
+
+    public boolean changeTab() {
+        if(currentTab == TWO) {
+            changeToOne();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void changeToOne() {
+        ll_three_two.setVisibility(View.GONE);
+        ll_three_one.setVisibility(View.VISIBLE);
+        currentTab = ONE;
+    }
+
+    public void changeToTwo() {
+        ll_three_one.setVisibility(View.GONE);
+        ll_three_two.setVisibility(View.VISIBLE);
+        currentTab = TWO;
     }
 }

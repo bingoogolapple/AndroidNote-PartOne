@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <TextView style="@style/text_title" android:text="恭喜您,设置完成"/>
+    <TextView android:onClick="activeAdmin" android:clickable="true" android:background="@drawable/selector_btn_green" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="点击我开启设备管理员,开启后可以远程锁屏,销毁数据(!!!强烈建议开启.)"/>
+    <CheckBox android:id="@+id/cb_setup4_status" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="防盗保护的状态"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center_horizontal" android:orientation="horizontal">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/presence_invisible"/>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/presence_invisible"/>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/presence_invisible"/>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@android:drawable/presence_online"/>
+    </LinearLayout>
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" android:src="@drawable/phone"/>
+        <Button style="@style/btn_next" android:text="设置完成"/>
+        <Button style="@style/btn_pre"/>
+    </RelativeLayout>
+</LinearLayout>

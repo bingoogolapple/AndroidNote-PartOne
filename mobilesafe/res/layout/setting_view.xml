@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dip" >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="5dip"
+        android:text="归属地ss显示设置"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title"
+        android:layout_marginLeft="5dip"
+        android:layout_marginTop="3dip"
+        android:text="归属地ss开启状态"
+        android:textSize="16sp" />
+
+    <CheckBox
+        android:focusable="false"
+        android:clickable="false"
+        android:id="@+id/cb_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+
+    
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="@drawable/list_devider"/>
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:bingoogol="http://schemas.android.com/apk/res/com.bingoogol.mobilesafe"
+              android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+    <TextView android:layout_width="match_parent" android:layout_height="40dip" android:background="#5566ff00"
+              android:gravity="center" android:text="设置中心" android:textSize="20sp"/>
+    <com.bingoogol.mobilesafe.ui.sub.SettingView android:id="@+id/sv_setting_autoupdate"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="55dip" bingoogol:content_off="自动更新已经关闭"
+                                                 bingoogol:content_on="自动更新已经开启"
+                                                 bingoogol:title="自动更新设置"/>
+    <com.bingoogol.mobilesafe.ui.sub.SettingView android:id="@+id/sv_setting_showaddress"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="55dip" bingoogol:content_off="归属地显示已经关闭"
+                                                 bingoogol:content_on="归属地显示已经开启"
+                                                 bingoogol:title="归属地显示"/>
+    <RelativeLayout android:id="@+id/rl_setting_changebg" android:layout_width="match_parent"
+                    android:layout_height="55dip">
+        <TextView android:id="@+id/tv_setting_changebg" android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:layout_marginTop="5dip"
+                  android:text="归属地提示框风格" android:textSize="18sp"/>
+        <TextView android:id="@+id/tv_setting_bg" android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" android:layout_below="@id/tv_setting_changebg"
+                  android:layout_marginLeft="5dip" android:layout_marginTop="3dip" android:text="半透明"
+                  android:textSize="16sp"/>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:layout_alignParentRight="true" android:layout_centerVertical="true"
+                   android:src="@drawable/jiantou1"/>
+        <View android:layout_width="fill_parent" android:layout_height="1dip" android:layout_alignParentBottom="true"
+              android:background="@drawable/list_devider"></View>
+    </RelativeLayout>
+    <RelativeLayout android:id="@+id/rl_setting_changexy" android:layout_width="match_parent"
+                    android:layout_height="55dip">
+        <TextView android:id="@+id/tv_setting_changexy" android:layout_width="wrap_content"
+                  android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:layout_marginTop="5dip"
+                  android:text="归属地提示框位置" android:textSize="18sp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_below="@id/tv_setting_changexy" android:layout_marginLeft="5dip"
+                  android:layout_marginTop="3dip" android:text="设置归属地提示框的位置" android:textSize="16sp"/>
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:layout_alignParentRight="true" android:layout_centerVertical="true"
+                   android:src="@drawable/jiantou1"/>
+        <View android:layout_width="fill_parent" android:layout_height="1dip" android:layout_alignParentBottom="true"
+              android:background="@drawable/list_devider"></View>
+    </RelativeLayout>
+</LinearLayout>

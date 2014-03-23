@@ -52,6 +52,20 @@ public class MainActivity extends FragmentActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        FragmentThree fragmentThree = (FragmentThree) getSupportFragmentManager().findFragmentByTag("tab3");
+//        if (fragmentThree.currentTab == FragmentThree.ONE) {
+//            fragmentThree.changeToTwo();
+//        } else {
+//            fragmentThree.changeToOne();
+//        }
+        if(!fragmentThree.changeTab()) {
+            super.onBackPressed();
+        }
+
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         Log.w(TAG, "onStart");
@@ -60,6 +74,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.w(TAG,"onStop");
+        Log.w(TAG, "onStop");
     }
 }

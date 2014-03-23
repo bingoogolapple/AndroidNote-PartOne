@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#5566ff00"
+            android:gravity="center"
+            android:text="主界面"
+            android:textSize="20sp"/>
+    <com.bingoogol.mobilesafe.ui.sub.FocusedTextView
+            android:singleLine="true"
+            android:text="我是您的手机安全卫士，我时刻的保护您的手机安全，呵呵呵呵呵呵呵呵呵呵呵"
+            android:textColor="#ff00"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="@android:integer/config_longAnimTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    <GridView
+            android:id="@+id/gv_home"
+            android:listSelector="@drawable/selector_home_gv_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:horizontalSpacing="5dp"
+            android:verticalSpacing="5dp"
+            android:numColumns="3">
+
+    </GridView>
+</LinearLayout>
