@@ -16,6 +16,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="A4A" exported="" />
+    <orderEntry type="module" module-name="A4A" />
   </component>
 </module>
 

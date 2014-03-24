@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,6 @@ public class FragmentThree extends Fragment implements View.OnClickListener {
                 ll_three_two.setVisibility(View.GONE);
                 break;
         }
-
     }
+
 }

@@ -1,12 +1,15 @@
 package cn.bingoogol.ftabhost;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
+import cn.bingoogol.ftabhost.fragment.FragmentFour;
 import cn.bingoogol.ftabhost.fragment.FragmentOne;
 import cn.bingoogol.ftabhost.fragment.FragmentThree;
 import cn.bingoogol.ftabhost.fragment.FragmentTwo;
@@ -27,13 +30,15 @@ public class MainActivity extends FragmentActivity {
         TabHost.TabSpec tab1 = mTabHost.newTabSpec("tab1");
         TabHost.TabSpec tab2 = mTabHost.newTabSpec("tab2");
         TabHost.TabSpec tab3 = mTabHost.newTabSpec("tab3");
+        TabHost.TabSpec tab4 = mTabHost.newTabSpec("tab4");
         tab1.setIndicator(getIndicatorView(R.drawable.ic_launcher, "标签一"));
         tab2.setIndicator(getIndicatorView(R.drawable.ic_launcher, "标签二"));
         tab3.setIndicator(getIndicatorView(R.drawable.ic_launcher, "标签三"));
+        tab4.setIndicator(getIndicatorView(R.drawable.ic_launcher, "标签四"));
         mTabHost.addTab(tab1, FragmentOne.class, null);
         mTabHost.addTab(tab2, FragmentTwo.class, null);
         mTabHost.addTab(tab3, FragmentThree.class, null);
-
+        mTabHost.addTab(tab4, FragmentFour.class, null);
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 
             @Override
@@ -61,5 +66,13 @@ public class MainActivity extends FragmentActivity {
     protected void onStop() {
         super.onStop();
         Log.w(TAG,"onStop");
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = fm.findFragmentByTag("tab1");
+        super.onBackPressed();
+
     }
 }
