@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">手机安全卫士</string>
+    <string name="version_number">版本号</string>
+    <string name="device_admin_description">我是设备管理员，开启我之后可以。。。。。</string>
+</resources>

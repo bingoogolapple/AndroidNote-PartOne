@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+              android:layout_height="match_parent" android:orientation="vertical">
+    <TextView android:layout_width="match_parent" android:layout_height="40dip" android:background="#5566ff00"
+              android:gravity="center" android:text="号码归属地查询" android:textSize="20sp"/>
+    <EditText android:id="@+id/et_number" android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:inputType="phone"></EditText>
+    <Button android:onClick="query" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="查询"/>
+    <TextView android:id="@+id/tv_number_address" android:layout_width="wrap_content"
+              android:layout_height="wrap_content" android:text="归属地:"
+              android:textAppearance="?android:attr/textAppearanceLarge"/>
+</LinearLayout>

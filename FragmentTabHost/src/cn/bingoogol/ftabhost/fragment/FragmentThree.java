@@ -14,6 +14,9 @@ import cn.bingoogol.ftabhost.R;
 
 public class FragmentThree extends Fragment implements View.OnClickListener {
     private static final String TAG = "FragmentThree";
+    public static final int ONE = 1;
+    public static final int TWO = 2;
+    public static int currentTab = ONE;
     private View ll_three_one;
     private View ll_three_two;
     private ListView lv_three_one;
@@ -110,6 +113,6 @@ public class FragmentThree extends Fragment implements View.OnClickListener {
                 ll_three_two.setVisibility(View.GONE);
                 break;
         }
-    }
 
+    }
 }
