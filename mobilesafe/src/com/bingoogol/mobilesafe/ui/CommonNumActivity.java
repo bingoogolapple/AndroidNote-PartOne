@@ -61,7 +61,13 @@ public class CommonNumActivity extends FinalActivity {
 
         @Override
         public void onGroupExpanded(int groupPosition) {
-
+            int x = 0;
+            int y = 0;
+            if(x == y) {
+                x = 8;
+            } else {
+                y = 5;
+            }
             super.onGroupExpanded(groupPosition);
         }
 

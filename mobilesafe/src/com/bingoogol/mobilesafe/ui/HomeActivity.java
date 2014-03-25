@@ -61,6 +61,12 @@ public class HomeActivity extends FinalActivity {
                         // 设置中心
                         Intent settingIntent = new Intent(HomeActivity.this,SettingActivity.class);
                         startActivity(settingIntent);
+                        break;
+                    case 1:
+                        //通讯卫士
+                        Intent callSmsSafeIntent = new Intent(HomeActivity.this,CallSmsSafeActivity.class);
+                        startActivity(callSmsSafeIntent);
+                        break;
                 }
             }
         });

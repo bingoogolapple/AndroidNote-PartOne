@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -104,7 +105,22 @@ public class SplashActivity extends FinalActivity {
         copyDB("address.db");
         copyDB("commonnum.db");
 
+        installShortCut();
+    }
 
+    private void installShortCut() {
+        Intent intent = new Intent();
+        intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "safe快捷方式");
+        // 桌面应用通过action和category来判断某快捷方式是否已存在
+        intent.putExtra("duplicate", false);
+        intent.putExtra(Intent.EXTRA_SHORTCUT_ICON, BitmapFactory.decodeResource(getResources(), R.drawable.application_icon));
+        Intent i = new Intent();
+        // 如果不是入口activity，则必须用隐式意图
+        i.setAction("com.bingoogol.mobilesafe.home");
+        i.addCategory("android.intent.category.DEFAULT");
+        intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, i);
+        sendBroadcast(intent);
     }
 
     private void copyDB(final String dbname) {
