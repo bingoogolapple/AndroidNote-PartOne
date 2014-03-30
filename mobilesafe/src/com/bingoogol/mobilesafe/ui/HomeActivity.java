@@ -43,6 +43,7 @@ public class HomeActivity extends FinalActivity {
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent =null;
                 switch (position) {
                     case 0:
                         //检查用户是否设置过密码
@@ -54,18 +55,22 @@ public class HomeActivity extends FinalActivity {
                         break;
                     case 7:
                         // 高级工具
-                        Intent atoosIntent = new Intent(HomeActivity.this,AtoolsActivity.class);
-                        startActivity(atoosIntent);
+                        intent = new Intent(HomeActivity.this,AtoolsActivity.class);
+                        startActivity(intent);
                         break;
                     case 8:
                         // 设置中心
-                        Intent settingIntent = new Intent(HomeActivity.this,SettingActivity.class);
-                        startActivity(settingIntent);
+                        intent = new Intent(HomeActivity.this,SettingActivity.class);
+                        startActivity(intent);
                         break;
                     case 1:
                         //通讯卫士
-                        Intent callSmsSafeIntent = new Intent(HomeActivity.this,CallSmsSafeActivity.class);
-                        startActivity(callSmsSafeIntent);
+                        intent = new Intent(HomeActivity.this,CallSmsSafeActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        intent =  new Intent(HomeActivity.this,AppManagerActivity.class);
+                        startActivity(intent);
                         break;
                 }
             }

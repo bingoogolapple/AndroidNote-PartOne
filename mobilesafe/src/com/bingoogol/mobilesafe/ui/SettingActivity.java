@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import com.bingoogol.mobilesafe.R;
+import com.bingoogol.mobilesafe.service.CallSmsSafeService;
 import com.bingoogol.mobilesafe.service.PhoneStatusService;
 import com.bingoogol.mobilesafe.ui.sub.SettingView;
 import com.bingoogol.mobilesafe.util.ServiceStatusUtils;
@@ -24,6 +25,9 @@ public class SettingActivity extends FinalActivity {
     private SettingView sv_setting_showaddress;
     @ViewInject(id = R.id.sv_setting_autoupdate)
     private SettingView sv_setting_autoupdate;
+    @ViewInject(id = R.id.sv_setting_callsmssafe)
+    private SettingView sv_setting_callsmssafe;
+    private Intent callSmsServiceIntent;
 
     private Intent showAddressIntent;
 
@@ -34,7 +38,7 @@ public class SettingActivity extends FinalActivity {
     @ViewInject(id = R.id.rl_setting_changexy)
     private View rl_setting_changexy;
 
-    private String[] items = {"半透明","活力橙","卫士蓝","苹果绿","金属灰"};
+    private String[] items = {"半透明", "活力橙", "卫士蓝", "苹果绿", "金属灰"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,11 +94,24 @@ public class SettingActivity extends FinalActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SettingActivity.this,DragViewActivity.class);
+                Intent intent = new Intent(SettingActivity.this, DragViewActivity.class);
                 startActivity(intent);
             }
         });
+        callSmsServiceIntent = new Intent(this, CallSmsSafeService.class);
+        sv_setting_callsmssafe.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                if (sv_setting_callsmssafe.isChecked()) {
+                    sv_setting_callsmssafe.setChecked(false);
+                    stopService(callSmsServiceIntent);
+                } else {
+                    sv_setting_callsmssafe.setChecked(true);
+                    startService(callSmsServiceIntent);
+                }
+            }
+        });
     }
 
     protected void showChangeBgDialog() {
@@ -134,6 +151,11 @@ public class SettingActivity extends FinalActivity {
             sv_setting_showaddress.setChecked(true);
         } else {
             sv_setting_showaddress.setChecked(false);
+        }
+        if (ServiceStatusUtils.isServiceRunning(this, "com.bingoogol.mobilesafe.service.CallSmsSafeService")) {
+            sv_setting_callsmssafe.setChecked(true);
+        } else {
+            sv_setting_callsmssafe.setChecked(false);
         }
         super.onStart();
     }
