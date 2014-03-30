@@ -104,8 +104,9 @@ public class AppManagerActivity extends Activity {
                 //popupwindow 类似于对话框 轻量级的activity 重量级的对话框
                 View contentView = View.inflate(getApplicationContext(), R.layout.popup_menu, null);
                 popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//                popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,是否获取焦点);
                 //如果想让在点击别的地方的时候 关闭掉弹出窗体 一定要记得给popupwindow设置一个背景资源
-                popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 int[] location = new int[2];
                 view.getLocationInWindow(location);

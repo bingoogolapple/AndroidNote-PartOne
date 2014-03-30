@@ -60,7 +60,8 @@
                 android:cacheColorHint="@android:color/transparent"
                 android:fastScrollEnabled="true" >
         </ListView>
-
+        <!--android:cacheColorHint="@android:color/transparent"快速拖动时的背景-->
+        <!-- android:fastScrollEnabled="true"快速拖动时显示拖动滑块-->
         <TextView
                 android:id="@+id/tv_status"
                 android:textColor="#0000ff"
