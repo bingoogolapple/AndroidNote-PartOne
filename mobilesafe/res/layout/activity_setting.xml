@@ -51,4 +51,11 @@
             bingoogol:content_off="黑名单拦截已经关闭"
             bingoogol:content_on="黑名单拦截已经开启"
             bingoogol:title="电话短信黑名单拦截" />
+    <com.bingoogol.mobilesafe.ui.sub.SettingView
+            android:id="@+id/sv_setting_applock"
+            android:layout_width="match_parent"
+            android:layout_height="55dip"
+            bingoogol:content_off="程序锁已经关闭"
+            bingoogol:content_on="程序锁已经开启"
+            bingoogol:title="程序锁设置" />
 </LinearLayout>

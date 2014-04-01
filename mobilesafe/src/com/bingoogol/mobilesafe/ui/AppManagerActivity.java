@@ -1,8 +1,15 @@
 package com.bingoogol.mobilesafe.ui;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -18,6 +25,7 @@ import com.bingoogol.mobilesafe.R;
 import com.bingoogol.mobilesafe.domain.AppInfo;
 import com.bingoogol.mobilesafe.engine.AppInfoProvider;
 import com.bingoogol.mobilesafe.util.Logger;
+import com.bingoogol.mobilesafe.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +33,7 @@ import java.util.List;
 /**
  * Created by bingoogol@sina.com on 14-3-30.
  */
-public class AppManagerActivity extends Activity {
+public class AppManagerActivity extends Activity  implements View.OnClickListener {
     protected static final String TAG = "AppManagerActivity";
     private TextView tv_avail_rom;
     private TextView tv_avail_sd;
@@ -33,6 +41,17 @@ public class AppManagerActivity extends Activity {
     private ListView lv_appmanager;
 
     private TextView tv_status;
+
+    private AppInfo appInfo;
+
+    private class MyReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println("---" + intent.getDataString());
+        }
+
+    }
 
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
@@ -98,21 +117,37 @@ public class AppManagerActivity extends Activity {
                                     int position, long id) {
 
                 dismissPopupWindow();
-
-                AppInfo appInfo = (AppInfo) lv_appmanager.getItemAtPosition(position);
+                // 把点击的条目 赋值给类的成员变量
+                appInfo = (AppInfo) lv_appmanager.getItemAtPosition(position);
                 Logger.i(TAG, "被点击的条目包名:" + appInfo.getPackname());
-                //popupwindow 类似于对话框 轻量级的activity 重量级的对话框
-                View contentView = View.inflate(getApplicationContext(), R.layout.popup_menu, null);
-                popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//                popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,是否获取焦点);
-                //如果想让在点击别的地方的时候 关闭掉弹出窗体 一定要记得给popupwindow设置一个背景资源
-//                popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                // popupwindow 类似于对话框 轻量级的activity 重量级的对话框
+                View contentView = View.inflate(getApplicationContext(),
+                        R.layout.popup_menu, null);
+                LinearLayout ll_share = (LinearLayout) contentView
+                        .findViewById(R.id.ll_share);
+                LinearLayout ll_start = (LinearLayout) contentView
+                        .findViewById(R.id.ll_start);
+                LinearLayout ll_uninstall = (LinearLayout) contentView
+                        .findViewById(R.id.ll_uninstall);
+
+                ll_share.setOnClickListener(AppManagerActivity.this);
+                ll_start.setOnClickListener(AppManagerActivity.this);
+                ll_uninstall.setOnClickListener(AppManagerActivity.this);
+
+                popupWindow = new PopupWindow(contentView,
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                // 如果想让在点击别的地方的时候 关闭掉弹出窗体 一定要记得给popupwindow设置一个背景资源
+                popupWindow.setBackgroundDrawable(new ColorDrawable(
+                        Color.TRANSPARENT));
 
                 int[] location = new int[2];
                 view.getLocationInWindow(location);
-                popupWindow.showAtLocation(parent, Gravity.TOP + Gravity.LEFT, location[0] + 60, location[1]);
+                popupWindow.showAtLocation(parent, Gravity.TOP + Gravity.LEFT,
+                        location[0] + 60, location[1]);
 
-                ScaleAnimation sa = new ScaleAnimation(0.5f, 1.2f, 0.5f, 1.2f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                ScaleAnimation sa = new ScaleAnimation(0.5f, 1.2f, 0.5f, 1.2f,
+                        Animation.RELATIVE_TO_SELF, 0.5f,
+                        Animation.RELATIVE_TO_SELF, 0.5f);
                 sa.setDuration(500);
 
                 contentView.startAnimation(sa);
@@ -144,8 +179,6 @@ public class AppManagerActivity extends Activity {
                 // 设置listview的数据.
                 handler.sendEmptyMessage(0);
             }
-
-            ;
         }.start();
 
     }
@@ -309,4 +342,91 @@ public class AppManagerActivity extends Activity {
         }
 
     }
+
+    /**
+     * 点击事件
+     */
+    @Override
+    public void onClick(View v) {
+        dismissPopupWindow();
+        switch (v.getId()) {
+            case R.id.ll_share:
+                Logger.i(TAG, "分享:" + appInfo.getPackname());
+                shareApplication();
+                break;
+
+            case R.id.ll_start:
+                Logger.i(TAG, "开启:" + appInfo.getPackname());
+                startApplication();
+
+                break;
+            case R.id.ll_uninstall:
+                Logger.i(TAG, "卸载:" + appInfo.getPackname());
+                uninstallApplication();
+                break;
+        }
+
+    }
+
+    /**
+     * 卸载一个应用程序
+     */
+    private void uninstallApplication() {
+        // <action android:name="android.intent.action.VIEW" />
+        // <action android:name="android.intent.action.DELETE" />
+        // <category android:name="android.intent.category.DEFAULT" />
+        // <data android:scheme="package" />
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.DELETE");
+        intent.addCategory("android.intent.category.DEFAULT");
+        intent.setData(Uri.parse("package:" + appInfo.getPackname()));
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        fillData();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /**
+     * 开启一个应用,实质上就是开启这个应用的第一个activity
+     */
+    private void startApplication() {
+        PackageManager pm = getPackageManager();
+        try {
+            PackageInfo info = pm.getPackageInfo(appInfo.getPackname(),
+                    PackageManager.GET_ACTIVITIES);
+            ActivityInfo[] activityInfos = info.activities;
+            if (activityInfos != null && activityInfos.length > 0) {
+                ActivityInfo activityInfo = activityInfos[0];// 第0个条目
+                // 代表的就是当前应用程序入口的activity
+                String className = activityInfo.name;
+                Intent intent = new Intent();
+                intent.setClassName(appInfo.getPackname(), className);
+                startActivity(intent);
+            } else {
+                ToastUtil.makeText(this, "无法启动该应用");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            ToastUtil.makeText(this, "没有找到当前应用");
+        }
+
+    }
+
+    /**
+     * 分享一个应用程序
+     */
+    private void shareApplication() {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.SEND");
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT,
+                "推荐您使用一款软件:名称叫" + appInfo.getAppName() + "下载地址:"
+                        + "https://play.google.com/store/apps/details?id="
+                        + appInfo.getPackname());
+        startActivity(intent);
+    }
+
 }

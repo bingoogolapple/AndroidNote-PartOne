@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bingoogol.mobilesafe.R;
 import com.bingoogol.mobilesafe.service.CallSmsSafeService;
 import com.bingoogol.mobilesafe.service.PhoneStatusService;
+import com.bingoogol.mobilesafe.service.WatchDogService;
 import com.bingoogol.mobilesafe.ui.sub.SettingView;
 import com.bingoogol.mobilesafe.util.ServiceStatusUtils;
 import net.tsz.afinal.FinalActivity;
@@ -27,6 +28,10 @@ public class SettingActivity extends FinalActivity {
     private SettingView sv_setting_autoupdate;
     @ViewInject(id = R.id.sv_setting_callsmssafe)
     private SettingView sv_setting_callsmssafe;
+    @ViewInject(id = R.id.sv_setting_applock)
+
+    private SettingView sv_setting_applock;
+    private Intent watchDogService;
     private Intent callSmsServiceIntent;
 
     private Intent showAddressIntent;
@@ -112,6 +117,24 @@ public class SettingActivity extends FinalActivity {
                 }
             }
         });
+        watchDogService = new Intent(this,WatchDogService.class);
+
+        sv_setting_applock.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(sv_setting_applock.isChecked()){
+                    sv_setting_applock.setChecked(false);
+                    stopService(watchDogService);
+                }else{
+                    sv_setting_applock.setChecked(true);
+                    startService(watchDogService);
+                }
+
+            }
+        });
+
+
     }
 
     protected void showChangeBgDialog() {
@@ -156,6 +179,11 @@ public class SettingActivity extends FinalActivity {
             sv_setting_callsmssafe.setChecked(true);
         } else {
             sv_setting_callsmssafe.setChecked(false);
+        }
+        if (ServiceStatusUtils.isServiceRunning(this, "com.bingoogol.mobilesafe.service.WatchDogService")) {
+            sv_setting_applock.setChecked(true);
+        } else {
+            sv_setting_applock.setChecked(false);
         }
         super.onStart();
     }

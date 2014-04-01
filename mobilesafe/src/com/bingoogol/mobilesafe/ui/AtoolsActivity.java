@@ -61,4 +61,14 @@ public class AtoolsActivity extends Activity {
         }.start();
 
     }
+
+    /**
+     * 显示程序锁的ui
+     * @param view
+     */
+    public void showAppLockUI(View view){
+        Intent intent = new Intent(this,ApplockActivity.class);
+        startActivity(intent);
+
+    }
 }
