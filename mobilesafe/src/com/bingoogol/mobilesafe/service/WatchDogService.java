@@ -130,7 +130,7 @@ public class WatchDogService extends Service {
 
 		receiver = new InnerReceiver();
 		IntentFilter filter = new IntentFilter();
-		filter.addAction("com.itheima.stopprotect");
+		filter.addAction("com.bingoogol.stopprotect");
 		registerReceiver(receiver, filter);
 
 		screenLockReceiver = new ScreenLockReceiver();

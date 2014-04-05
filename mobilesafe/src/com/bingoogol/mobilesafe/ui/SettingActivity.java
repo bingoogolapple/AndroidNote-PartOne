@@ -29,8 +29,10 @@ public class SettingActivity extends FinalActivity {
     @ViewInject(id = R.id.sv_setting_callsmssafe)
     private SettingView sv_setting_callsmssafe;
     @ViewInject(id = R.id.sv_setting_applock)
-
     private SettingView sv_setting_applock;
+    @ViewInject(id = R.id.sv_setting_showsystem)
+    private SettingView sv_setting_showsystem;
+
     private Intent watchDogService;
     private Intent callSmsServiceIntent;
 
@@ -134,7 +136,23 @@ public class SettingActivity extends FinalActivity {
             }
         });
 
+        boolean showsystem = sp.getBoolean("showsystem", true);
+        sv_setting_showsystem.setChecked(showsystem);
+        sv_setting_showsystem.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sp.edit();
+                if(sv_setting_showsystem.isChecked()){
+                    sv_setting_showsystem.setChecked(false);
+                    editor.putBoolean("showsystem", false);
+                }else{
+                    sv_setting_showsystem.setChecked(true);
+                    editor.putBoolean("showsystem", true);
+                }
+                editor.commit();
+            }
+        });
     }
 
     protected void showChangeBgDialog() {

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="gray">#22000000</color>
+    <color name="textColorPrimary">#ffffffff</color>
+    <color name="textColorSecondary">#ffbebebe</color>
+    <color name="textColorSecondaryContent">#ffcdcdcd</color>
+    <color name="textColorPrimaryDark">#ff000000</color>
+    <color name="textColorSecondaryDark">#ff323232</color>
+    <color name="textColorTrafficHandbookTitle">#ff97bb2b</color>
 </resources>

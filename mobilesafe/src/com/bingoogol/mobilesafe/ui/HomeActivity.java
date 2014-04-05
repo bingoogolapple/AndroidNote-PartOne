@@ -69,7 +69,13 @@ public class HomeActivity extends FinalActivity {
                         startActivity(intent);
                         break;
                     case 2:
+                        // 软件管理
                         intent =  new Intent(HomeActivity.this,AppManagerActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 3:
+                        // 进程管理
+                        intent =  new Intent(HomeActivity.this,TaskManagerActivity.class);
                         startActivity(intent);
                         break;
                 }

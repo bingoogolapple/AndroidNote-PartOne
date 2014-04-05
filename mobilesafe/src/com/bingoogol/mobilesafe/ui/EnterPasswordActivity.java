@@ -94,7 +94,7 @@ public class EnterPasswordActivity extends Activity {
 			//前台的一个界面.
 			//发送一个自定义的广播
 		/*	Intent intent = new Intent();
-			intent.setAction("com.itheima.stopprotect");
+			intent.setAction("com.bingoogol.stopprotect");
 			intent.putExtra("packname", packname);
 			sendBroadcast(intent);*/
 			//采用绑定服务的方法 调用服务里面的方法  临时的停止对某个应用程序的保护.

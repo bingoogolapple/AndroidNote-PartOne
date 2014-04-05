@@ -45,5 +45,8 @@
         <item name="android:onClick">pre</item>
     </style>
 
-
+    <style name="widget_text">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">@color/textColorPrimaryDark</item>
+    </style>
 </resources>

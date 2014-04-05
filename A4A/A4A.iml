@@ -4,6 +4,9 @@
     <facet type="android" name="Android">
       <configuration>
         <option name="LIBRARY_PROJECT" value="true" />
+        <proGuardCfgFiles>
+          <file>file://$USER_HOME$/install/adt-bundle-linux-x86-20131030/sdk/tools/proguard/proguard-android.txt</file>
+        </proGuardCfgFiles>
         <option name="UPDATE_PROPERTY_FILES" value="true" />
       </configuration>
     </facet>

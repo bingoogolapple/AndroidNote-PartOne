@@ -5,6 +5,16 @@
               android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
     <TextView android:layout_width="match_parent" android:layout_height="40dip" android:background="#5566ff00"
               android:gravity="center" android:text="设置中心" android:textSize="20sp"/>
+
+    <ScrollView
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent" >
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical" >
     <com.bingoogol.mobilesafe.ui.sub.SettingView android:id="@+id/sv_setting_autoupdate"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="55dip" bingoogol:content_off="自动更新已经关闭"
@@ -58,4 +68,20 @@
             bingoogol:content_off="程序锁已经关闭"
             bingoogol:content_on="程序锁已经开启"
             bingoogol:title="程序锁设置" />
+    <com.bingoogol.mobilesafe.ui.sub.SettingView
+            android:id="@+id/sv_setting_showsystem"
+            android:layout_width="match_parent"
+            android:layout_height="55dip"
+            bingoogol:content_off="不显示系统进程"
+            bingoogol:content_on="显示系统进程"
+            bingoogol:title="是否显示系统进程" />
+    <com.bingoogol.mobilesafe.ui.sub.SettingView
+            android:id="@+id/sv_setting_autokill"
+            android:layout_width="match_parent"
+            android:layout_height="55dip"
+            bingoogol:content_off="自动清理进程已经关闭"
+            bingoogol:content_on="自动清理进程已经开启"
+            bingoogol:title="锁屏清理进程" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
