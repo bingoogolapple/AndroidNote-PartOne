@@ -18,6 +18,18 @@ public class AppInfo {
 
     private boolean userApp;
 
+    private int uid;
+
+
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
     public Drawable getAppIcon() {
         return appIcon;
     }

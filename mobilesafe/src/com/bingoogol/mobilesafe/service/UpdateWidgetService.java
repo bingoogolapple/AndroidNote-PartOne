@@ -46,13 +46,14 @@ public class UpdateWidgetService extends Service {
 				views.setTextViewText(R.id.process_count, "正在运行进程数量:"+am.getRunningAppProcesses().size());
 				views.setTextViewText(R.id.process_memory, "剩余内存:"+getAvailMem());
 				Intent intent = new Intent();
-				intent.setAction("com.itheima.killallbgprocess");
+				intent.setAction("com.bingoogol.killallbgprocess");
 				//定义一个延期的广播事件
 				PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 				views.setOnClickPendingIntent(R.id.btn_clear, pendingIntent);
 				awm.updateAppWidget(provider, views);
 			}
 		};
+        // 锁屏的时候停止该服务，节约用电
 		timer.schedule(task, 1000, 1000);
 		super.onCreate();
 	}

@@ -24,6 +24,7 @@ import android.widget.*;
 import com.bingoogol.mobilesafe.R;
 import com.bingoogol.mobilesafe.domain.AppInfo;
 import com.bingoogol.mobilesafe.engine.AppInfoProvider;
+import com.bingoogol.mobilesafe.util.DensityUtil;
 import com.bingoogol.mobilesafe.util.Logger;
 import com.bingoogol.mobilesafe.util.ToastUtil;
 
@@ -143,7 +144,7 @@ public class AppManagerActivity extends Activity  implements View.OnClickListene
                 int[] location = new int[2];
                 view.getLocationInWindow(location);
                 popupWindow.showAtLocation(parent, Gravity.TOP + Gravity.LEFT,
-                        location[0] + 60, location[1]);
+                        location[0] + DensityUtil.dip2px(getApplicationContext(), 60), location[1]);
 
                 ScaleAnimation sa = new ScaleAnimation(0.5f, 1.2f, 0.5f, 1.2f,
                         Animation.RELATIVE_TO_SELF, 0.5f,

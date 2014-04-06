@@ -72,6 +72,7 @@
                   android:launchMode="singleInstance"
                   android:excludeFromRecents="true"/>
         <activity android:name=".ui.TaskManagerActivity"/>
+        <activity android:name=".ui.TrafficStatsActivity"/>
 
         <service android:name=".service.GPSService"/>
         <service android:name=".service.PhoneStatusService"/>
@@ -124,7 +125,7 @@
         </receiver>
         <receiver android:name=".receiver.KillBgProcessReceiver">
             <intent-filter >
-                <action android:name="com.itheima.killallbgprocess"/>
+                <action android:name="com.bingoogol.killallbgprocess"/>
             </intent-filter>
         </receiver>
     </application>

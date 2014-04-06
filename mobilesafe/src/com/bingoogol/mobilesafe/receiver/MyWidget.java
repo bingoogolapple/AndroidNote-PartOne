@@ -8,6 +8,7 @@ import com.bingoogol.mobilesafe.service.UpdateWidgetService;
 
 
 public class MyWidget extends AppWidgetProvider {
+    // 每个方法中单独new或者用静态成员变量
 	private static Intent intent;
 
 	@Override

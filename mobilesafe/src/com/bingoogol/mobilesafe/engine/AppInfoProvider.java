@@ -30,6 +30,9 @@ public class AppInfoProvider {
 
             int flags = packInfo.applicationInfo.flags;
 
+            int uid = packInfo.applicationInfo.uid;
+            appInfo.setUid(uid);
+
             if((flags & ApplicationInfo.FLAG_SYSTEM)!=0){
                 appInfo.setUserApp(false);//系统应用
             }else{
