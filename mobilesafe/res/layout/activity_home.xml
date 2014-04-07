@@ -4,6 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+
     <TextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -19,6 +20,11 @@
             android:marqueeRepeatLimit="@android:integer/config_longAnimTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+    <RelativeLayout android:id="@+id/offersAdLayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+    </RelativeLayout>
     <GridView
             android:id="@+id/gv_home"
             android:listSelector="@drawable/selector_home_gv_item"

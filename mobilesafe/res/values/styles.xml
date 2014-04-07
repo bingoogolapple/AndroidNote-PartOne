@@ -49,4 +49,10 @@
         <item name="android:textSize">16.0dip</item>
         <item name="android:textColor">@color/textColorPrimaryDark</item>
     </style>
+
+
+    <style name="my_progress_bar" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_layer_list</item>
+
+    </style>
 </resources>

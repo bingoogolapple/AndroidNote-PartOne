@@ -104,7 +104,7 @@ public class SplashActivity extends FinalActivity {
         this.findViewById(R.id.ll_splash_main).startAnimation(animation);
         copyDB("address.db");
         copyDB("commonnum.db");
-
+        copyDB("antivirus.db");
         installShortCut();
     }
 

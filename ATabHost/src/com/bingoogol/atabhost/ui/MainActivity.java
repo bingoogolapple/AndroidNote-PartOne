@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.TabHost;
 import com.bingoogol.atabhost.R;
 
+@SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity {
     private TabHost mTabHost;
 

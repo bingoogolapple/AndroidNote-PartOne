@@ -17,6 +17,9 @@ import com.bingoogol.mobilesafe.util.Md5Util;
 import com.bingoogol.mobilesafe.util.ToastUtil;
 import net.tsz.afinal.FinalActivity;
 import net.tsz.afinal.annotation.view.ViewInject;
+import net.youmi.android.AdManager;
+import net.youmi.android.banner.AdSize;
+import net.youmi.android.banner.AdView;
 
 /**
  * @author bingoogol@sina.com 14-1-24.
@@ -37,7 +40,17 @@ public class HomeActivity extends FinalActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 初始化应用发布ID和密钥，以及设置测试模式
+        AdManager.getInstance(this).init("87b351a487b919ae","b0da13954085db12", true);
         setContentView(R.layout.activity_home);
+
+        //实例化广告条
+        AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+        //获取要嵌入广告条的布局
+        RelativeLayout offersAdLayout=(RelativeLayout)findViewById(R.id.offersAdLayout);
+        //将广告条加入到布局中
+        offersAdLayout.addView(adView);
+
         sp = getSharedPreferences("config",MODE_PRIVATE);
         gv_home.setAdapter(new HomeAdapter());
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -52,16 +65,6 @@ public class HomeActivity extends FinalActivity {
                         } else {
                             showSetupPwDialog();
                         }
-                        break;
-                    case 7:
-                        // 高级工具
-                        intent = new Intent(HomeActivity.this,AtoolsActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 8:
-                        // 设置中心
-                        intent = new Intent(HomeActivity.this,SettingActivity.class);
-                        startActivity(intent);
                         break;
                     case 1:
                         //通讯卫士
@@ -79,8 +82,26 @@ public class HomeActivity extends FinalActivity {
                         startActivity(intent);
                         break;
                     case 4:
-                        // 进程管理
+                        // 流量统计
                         intent =  new Intent(HomeActivity.this,TrafficStatsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 5:
+                        intent =  new Intent(HomeActivity.this,AntivirusActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 6:
+                        intent =  new Intent(HomeActivity.this,SystemOptActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 7:
+                        // 高级工具
+                        intent = new Intent(HomeActivity.this,AtoolsActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 8:
+                        // 设置中心
+                        intent = new Intent(HomeActivity.this,SettingActivity.class);
                         startActivity(intent);
                         break;
                 }
