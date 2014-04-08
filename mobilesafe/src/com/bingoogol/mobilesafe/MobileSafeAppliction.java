@@ -41,7 +41,7 @@ public class MobileSafeAppliction extends Application {
 			
 			try {
 				StringBuffer sb = new StringBuffer();
-				sb.append("错误时间:"+System.currentTimeMillis()+"\n");
+				sb.append("错误时间: "+System.currentTimeMillis()+"\n");
 				//收集设备的信息 时间
 				Field[]  fields = Build.class.getFields();
 				for(Field field: fields){
