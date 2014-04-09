@@ -18,6 +18,8 @@ public class BootCompleteReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Logger.i(TAG, "手机启动完毕");
+        // TODO 把拦截短信的服务开启
+
         SharedPreferences sp = context.getSharedPreferences("config",Context.MODE_PRIVATE);
         boolean protecting = sp.getBoolean("protecting", false);
         if (protecting) {

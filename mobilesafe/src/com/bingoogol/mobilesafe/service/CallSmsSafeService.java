@@ -73,7 +73,8 @@ public class CallSmsSafeService extends Service {
         tm.listen(listener, PhoneStateListener.LISTEN_CALL_STATE);
         receiver = new InnerSmsReceiver();
         IntentFilter filter = new IntentFilter();
-        filter.setPriority(1000);
+        // 谁先执行这段代码，谁优先级就高。所以应该在开机广播中开启服务
+        filter.setPriority(Integer.MAX_VALUE);
         filter.addAction("android.provider.Telephony.SMS_RECEIVED");
         registerReceiver(receiver, filter);
 
