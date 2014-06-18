@@ -1,0 +1,17 @@
+<resources>
+
+    <string name="app_name">音乐播放器</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_list">歌曲列表</string>
+    <string name="list.update">更新列表</string>
+    <string name="list.about">关于</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_local_mp3_list">LocalMp3ListActivity</string>
+    <string name="title_activity_player">PlayerActivity</string>
+<string name="playbutton">播放</string>
+    <string name="pausebutton">暂停</string>
+    <string name="resetbutton">重播</string>
+    <string name="stopbutton">停止</string>
+    <string name="continues">继续</string>
+</resources>
