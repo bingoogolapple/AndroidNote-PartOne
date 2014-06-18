@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ToggleButton
+        android:id="@+id/tb_shake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:checked="false"
+        android:textOff="摇一摇点亮屏幕已关闭"
+        android:textOn="摇一摇点亮屏幕已开启" />
+
+    <ToggleButton
+        android:id="@+id/tb_onkey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:textOff="一键锁屏已关闭"
+        android:textOn="一键锁屏已开启" />
+
+</LinearLayout>

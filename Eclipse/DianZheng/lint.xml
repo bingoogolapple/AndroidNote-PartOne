@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="ContentDescription" severity="ignore" />
+    <issue id="ExportedReceiver" severity="ignore" />
+    <issue id="HardcodedText">
+        <ignore path="res/layout/memo_item.xml" />
+    </issue>
+    <issue id="UselessParent" severity="ignore" />
+</lint>

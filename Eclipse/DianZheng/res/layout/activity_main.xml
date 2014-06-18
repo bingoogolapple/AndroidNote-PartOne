@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_bg_common_actionbar_noshadow"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView style="@style/title_logo_style" />
+
+        <Button
+            android:id="@+id/btn_wirite_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/img_btn_home_actionbar_write" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_memo_main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </ListView>
+
+</LinearLayout>
