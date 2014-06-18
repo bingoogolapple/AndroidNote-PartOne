@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+    <Button
+            android:id="@+id/btn_main_jni1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="add"
+            />
+
+    <Button
+            android:id="@+id/btn_main_jni2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="sayHelloInc"
+            />
+
+    <Button
+            android:id="@+id/btn_main_jni3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="intMethod"
+            />
+    <Button
+            android:id="@+id/btn_main_jni4"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="sub"
+            />
+</LinearLayout>
+
