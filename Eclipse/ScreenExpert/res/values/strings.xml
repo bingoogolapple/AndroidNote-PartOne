@@ -1,7 +1,5 @@
 <resources>
 
-    <string name="app_name">ScreenExpert</string>
-    <string name="label">label</string>
-    <string name="description">description</string>
+    <string name="app_name">屏幕专家</string>
 
 </resources>

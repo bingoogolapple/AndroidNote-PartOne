@@ -63,11 +63,19 @@ public class SpUtil {
 		return getInt("onekey_y", 100);
 	}
 
-	public static void setOnekeyStatus(boolean status) {
-		putBoolean("onekey_status", status);
+	public static void putShakeUnlockScreen(boolean value) {
+		putBoolean("shake_unlock_screen", value);
 	}
 
-	public static boolean getOnekeyStatus() {
-		return getBoolean("onekey_status", false);
+	public static boolean getShakeUnlockScreen() {
+		return getBoolean("shake_unlock_screen", false);
+	}
+
+	public static void putOnekeyLockScreen(boolean value) {
+		putBoolean("onekey_lock_screen", value);
+	}
+
+	public static boolean getOnekeyLockScreen() {
+		return getBoolean("onekey_lock_screen", false);
 	}
 }
