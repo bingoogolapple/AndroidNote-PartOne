@@ -28,16 +28,31 @@ import cn.bingoogol.screenexpert.util.SpUtil;
 
 @SuppressWarnings("deprecation")
 public class ScreenService extends Service {
-	private static final String TAG = "ScreenLockService";
+	private static final String TAG = ScreenService.class.getSimpleName();
 
 	private DevicePolicyManager mDevicePolicyManager;
 	private WindowManager mWindowManager;
 	private View mView;
 	private LayoutParams mLayoutParams;
+	private SensorManager mSensorManager;
+	private IntentFilter mScreenActionIntentFilter;
 
 	private ScreenActionBinder mScreenActionBinder;
 	private WakeLock mWakeLock;
 	private long mLastShakeTime = 0;
+	
+
+	private BroadcastReceiver mScreenActionReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			Logger.i(TAG, "屏幕锁定，注册传感器");
+			if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+				mSensorManager.registerListener(mSensorEventListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+			} else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+				mSensorManager.unregisterListener(mSensorEventListener);
+			}
+		}
+	};
 
 	private BroadcastReceiver mDeviceAdminReceiver = new BroadcastReceiver() {
 		@Override
@@ -81,10 +96,14 @@ public class ScreenService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		Logger.i(TAG, "开启锁屏服务");
+		Logger.i(TAG, "onCreate");
 		mScreenActionBinder = new ScreenActionBinder();
 		mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 		mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		mScreenActionIntentFilter = new IntentFilter();
+		mScreenActionIntentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+		mScreenActionIntentFilter.addAction(Intent.ACTION_SCREEN_ON);
 
 		PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
 		mWakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, TAG);
@@ -93,6 +112,13 @@ public class ScreenService extends Service {
 		intentFilter.addAction(DeviceKeeperReceiver.ADD_DEVICE_ADMIN);
 		intentFilter.addAction(DeviceKeeperReceiver.REMOVE_DEVICE_ADMIN);
 		registerReceiver(mDeviceAdminReceiver, intentFilter);
+
+		if (SpUtil.getOnekeyLockScreen()) {
+			mScreenActionBinder.openOnekeyLockScreen();
+		}
+		if (SpUtil.getShakeUnlockScreen()) {
+			mScreenActionBinder.openShakeUnlockScreen();
+		}
 	}
 
 	@Override
@@ -103,7 +129,7 @@ public class ScreenService extends Service {
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Logger.i(TAG, "关闭锁屏服务");
+		Logger.i(TAG, "onDestroy");
 		mScreenActionBinder.closeOnekeyLockScreen();
 		mScreenActionBinder.closeShakeUnlockScreen();
 		unregisterReceiver(mDeviceAdminReceiver);
@@ -171,30 +197,10 @@ public class ScreenService extends Service {
 	}
 
 	private class ScreenActionBinder extends Binder implements ScreenAction {
-		private SensorManager mSensorManager;
-		private IntentFilter mScreenActionIntentFilter;
-		private BroadcastReceiver mScreenActionReceiver = new BroadcastReceiver() {
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				Logger.i(TAG, "屏幕锁定，注册传感器");
-				if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-					mSensorManager.registerListener(mSensorEventListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-				} else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-					mSensorManager.unregisterListener(mSensorEventListener);
-				}
-			}
-		};
-
-		public ScreenActionBinder() {
-			mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-			mScreenActionIntentFilter = new IntentFilter();
-			mScreenActionIntentFilter.addAction(Intent.ACTION_SCREEN_OFF);
-			mScreenActionIntentFilter.addAction(Intent.ACTION_SCREEN_ON);
-		}
 
 		@Override
 		public void openOnekeyLockScreen() {
-			if(mView == null) {
+			if (mView == null) {
 				initOnekeyLockScreenView();
 			}
 			mWindowManager.addView(mView, mLayoutParams);
@@ -203,7 +209,7 @@ public class ScreenService extends Service {
 
 		@Override
 		public void closeOnekeyLockScreen() {
-			if(mView != null) {
+			if (mView != null) {
 				mWindowManager.removeView(mView);
 				SpUtil.putOnekeyLockScreen(false);
 				mView = null;

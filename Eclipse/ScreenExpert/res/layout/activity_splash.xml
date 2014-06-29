@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match"
+    android:background="@color/bg_root_black" >
+
+    <TextView
+        android:id="@+id/tv_splash_versionName"
+        style="@style/wrap_wrap"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/size_large"
+        android:layout_marginTop="@dimen/size_large"
+        android:text="Version 1.0"
+        android:textSize="@dimen/textSize_middle" />
+
+    <TextView
+        android:id="@+id/tv_app_name"
+        style="@style/wrap_wrap"
+        android:layout_above="@id/tv_splash_versionName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/size_large"
+        android:layout_marginTop="@dimen/size_large"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_large" />
+
+    <ImageView
+        android:id="@+id/iv_rocket"
+        style="@style/wrap_wrap"
+        android:layout_above="@id/tv_app_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/size_large"
+        android:src="@drawable/rocket" />
+
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:screenexpert="http://schemas.android.com/apk/cn.bingoogol.screenexpert"
+    style="@style/wrap_wrap"
+    android:orientation="vertical" >
+
+    <cn.bingoogol.screenexpert.ui.view.ProgressWheel
+        android:id="@+id/pw_dialog_progressbar"
+        android:layout_width="@dimen/pw_dialog_progressbar_size"
+        android:layout_height="@dimen/pw_dialog_progressbar_size"
+        screenexpert:barColor="@color/bg_progressbar_blue"
+        screenexpert:barWidth="@dimen/pw_dialog_progressbar_barWidth"
+        screenexpert:rimColor="@color/bg_progressbar_function_gray"
+        screenexpert:rimWidth="@dimen/pw_dialog_progressbar_rimWidth"
+        screenexpert:spinSpeed="@dimen/pw_dialog_progressbar_spinSpeed"
+        screenexpert:text="50%"
+        screenexpert:textColor="@android:color/white"
+        screenexpert:textSize="@dimen/textSize_large" />
+
+</LinearLayout>

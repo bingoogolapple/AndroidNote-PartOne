@@ -1,0 +1,145 @@
+package cn.bingoogol.screenexpert.ui.activity;
+
+import net.youmi.android.AdManager;
+import net.youmi.android.banner.AdSize;
+import net.youmi.android.banner.AdView;
+import net.youmi.android.spot.SpotManager;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
+import cn.bingoogol.screenexpert.R;
+import cn.bingoogol.screenexpert.receiver.DeviceKeeperReceiver;
+import cn.bingoogol.screenexpert.service.ScreenService;
+import cn.bingoogol.screenexpert.service.ScreenService.ScreenAction;
+import cn.bingoogol.screenexpert.ui.view.SettingView;
+import cn.bingoogol.screenexpert.util.Logger;
+import cn.bingoogol.screenexpert.util.SpUtil;
+
+public class MainActivity extends BaseActivity implements OnClickListener {
+	private static final String TAG = MainActivity.class.getSimpleName();
+	private DevicePolicyManager mDevicePolicyManager;
+	private ComponentName mComponentName;
+	private SettingView mShakeSv;
+	private SettingView mOnekeySv;
+	private ScreenAction mScreenAction;
+	private ServiceConnection mScreenServiceConn = new ServiceConnection() {
+		@Override
+		public void onServiceDisconnected(ComponentName name) {
+		}
+
+		@Override
+		public void onServiceConnected(ComponentName name, IBinder service) {
+			mScreenAction = (ScreenAction) service;
+		}
+	};
+
+	@Override
+	protected void initView() {
+		setContentView(R.layout.activity_main);
+		mShakeSv = (SettingView) findViewById(R.id.sv_main_shake);
+		mOnekeySv = (SettingView) findViewById(R.id.sv_main_onekey);
+		// 参数：appId, appSecret, 调试模式
+		AdManager.getInstance(this).init("219fd982bb19309c", "18987239db2193b1", false);
+		LinearLayout adLayout = (LinearLayout) findViewById(R.id.lv_main_ad);
+		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
+		adLayout.addView(adView);
+	}
+
+	@Override
+	protected void setListener() {
+		mShakeSv.setOnClickListener(this);
+		mOnekeySv.setOnClickListener(this);
+	}
+
+	@Override
+	protected void afterViews(Bundle savedInstanceState) {
+		startService(new Intent(this, ScreenService.class));
+		bindService(new Intent(this, ScreenService.class), mScreenServiceConn, BIND_AUTO_CREATE);
+		mDevicePolicyManager = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+		mComponentName = new ComponentName(this, DeviceKeeperReceiver.class);
+
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		mShakeSv.setChecked(SpUtil.getShakeUnlockScreen());
+		mOnekeySv.setChecked(SpUtil.getOnekeyLockScreen());
+	}
+
+	@Override
+	protected void onStop() {
+		// 如果不调用此方法，则按home键的时候会出现图标无法显示的情况。
+		SpotManager.getInstance(this).disMiss(false);
+		super.onStop();
+	}
+
+	@Override
+	protected void onDestroy() {
+		SpotManager.getInstance(this).unregisterSceenReceiver();
+		unbindService(mScreenServiceConn);
+		super.onDestroy();
+	}
+
+	private void activeDeviceAdmin() {
+		Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+		intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mComponentName);
+		intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "必须激活屏幕专家为设备管理器之后才能实现一键锁屏功能");
+		startActivity(intent);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@SuppressWarnings("unused")
+	private void removeDeviceAdmin() {
+		boolean active = mDevicePolicyManager.isAdminActive(mComponentName);
+		if (active) {
+			mDevicePolicyManager.removeActiveAdmin(mComponentName);
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.sv_main_shake:
+			if (mScreenAction != null) {
+				if (mShakeSv.isChecked()) {
+					mShakeSv.setChecked(false);
+					mScreenAction.closeShakeUnlockScreen();
+				} else {
+					mShakeSv.setChecked(true);
+					mScreenAction.openShakeUnlockScreen();
+				}
+			}
+			break;
+		case R.id.sv_main_onekey:
+			if (mScreenAction != null) {
+				if (mDevicePolicyManager.isAdminActive(mComponentName)) {
+					if (mOnekeySv.isChecked()) {
+						mOnekeySv.setChecked(false);
+						mScreenAction.closeOnekeyLockScreen();
+					} else {
+						Logger.i(TAG, "开启一键锁屏");
+						mOnekeySv.setChecked(true);
+						mScreenAction.openOnekeyLockScreen();
+					}
+				} else {
+					activeDeviceAdmin();
+				}
+			}
+			break;
+		default:
+			break;
+		}
+	}
+}
