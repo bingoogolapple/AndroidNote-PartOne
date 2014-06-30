@@ -1,9 +1,9 @@
-package cn.bingoogol.screenexpert.ui.activity;
+package cn.bingoogol.bingo.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View.OnClickListener;
-import cn.bingoogol.screenexpert.App;
+import cn.bingoogol.bingo.App;
 
 public abstract class BaseActivity extends FragmentActivity implements OnClickListener {
 	protected App mApp;

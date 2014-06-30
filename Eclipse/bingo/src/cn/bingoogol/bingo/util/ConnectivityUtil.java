@@ -1,9 +1,9 @@
-package cn.bingoogol.screenexpert.util;
+package cn.bingoogol.bingo.util;
 
+import cn.bingoogol.bingo.App;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import cn.bingoogol.screenexpert.App;
 
 /**
  * wifi操作工具类

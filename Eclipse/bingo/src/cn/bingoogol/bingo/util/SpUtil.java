@@ -1,9 +1,9 @@
-package cn.bingoogol.screenexpert.util;
+package cn.bingoogol.bingo.util;
 
+import cn.bingoogol.bingo.App;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import cn.bingoogol.screenexpert.App;
 
 /**
  * SharedPreferences工具类，使用前必须先初始化，最好在Application的onCreate方法里初始化
@@ -51,32 +51,4 @@ public class SpUtil {
 		return mSharedPreferences.getBoolean(key, defValue);
 	}
 
-	public static void setOnekeyPosition(int x, int y) {
-		putInt("onekey_x", x);
-		putInt("onekey_y", y);
-	}
-
-	public static int getOnekeyX() {
-		return getInt("onekey_x", 100);
-	}
-
-	public static int getOnekeyY() {
-		return getInt("onekey_y", 100);
-	}
-
-	public static void putShakeUnlockScreen(boolean value) {
-		putBoolean("shake_unlock_screen", value);
-	}
-
-	public static boolean getShakeUnlockScreen() {
-		return getBoolean("shake_unlock_screen", false);
-	}
-
-	public static void putOnekeyLockScreen(boolean value) {
-		putBoolean("onekey_lock_screen", value);
-	}
-
-	public static boolean getOnekeyLockScreen() {
-		return getBoolean("onekey_lock_screen", false);
-	}
 }

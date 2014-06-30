@@ -9,6 +9,7 @@ import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.LinkedList;
 
 import android.app.Activity;
 import android.app.Application;
@@ -25,12 +26,13 @@ import cn.bingoogol.screenexpert.util.StorageUtil;
 public class App extends Application {
 	private static final String TAG = App.class.getSimpleName();
 	private static App mInstance;
+	private static LinkedList<Activity> mActivities = new LinkedList<Activity>();
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		mInstance = this;
-		SpUtil.init(this);
+		SpUtil.init();
 		Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
 	}
 
@@ -38,14 +40,24 @@ public class App extends Application {
 		return mInstance;
 	}
 
-	public void addActivity(Activity activity) {
-
+	public static void addActivity(Activity activity) {
+		mActivities.add(activity);
 	}
 
-	public void removeActivity(Activity activity) {
-
+	public static void removeActivity(Activity activity) {
+		mActivities.remove(activity);
 	}
-	
+
+	public static void exit() {
+		Activity activity;
+		while (mActivities.size() != 0) {
+			activity = mActivities.poll();
+			if (!activity.isFinishing()) {
+				activity.finish();
+			}
+		}
+	}
+
 	/**
 	 * 获取当前版本名称
 	 * 
@@ -88,7 +100,7 @@ public class App extends Application {
 		installApkIntent.setDataAndType(Uri.fromFile(apkFile), Constants.mime.APK);
 		return installApkIntent;
 	}
-	
+
 	private class MyUncaughtExceptionHandler implements UncaughtExceptionHandler {
 
 		@Override

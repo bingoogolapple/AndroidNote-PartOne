@@ -73,7 +73,7 @@ public class SplashActivity extends BaseActivity {
 	}
 
 	private void checkVersion() {
-		if (ConnectivityUtil.isWifiConnected(mApp) && StorageUtil.isExternalStorageWritable()) {
+		if (ConnectivityUtil.isWifiConnected() && StorageUtil.isExternalStorageWritable()) {
 			new AsyncHttpClient().get(Constants.config.UPGRADE_URL, new JsonHttpResponseHandler("UTF-8") {
 				@Override
 				public void onSuccess(JSONObject jsonObject) {

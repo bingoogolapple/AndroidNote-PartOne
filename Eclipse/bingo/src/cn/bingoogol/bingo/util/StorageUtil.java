@@ -1,6 +1,8 @@
-package cn.bingoogol.screenexpert.util;
+package cn.bingoogol.bingo.util;
 
 import java.io.File;
+
+import cn.bingoogol.bingo.App;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.MemoryInfo;
@@ -9,7 +11,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.StatFs;
-import cn.bingoogol.screenexpert.App;
 
 public class StorageUtil {
 	private static final String TAG = StorageUtil.class.getSimpleName();

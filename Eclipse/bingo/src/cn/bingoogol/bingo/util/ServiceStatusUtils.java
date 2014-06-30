@@ -1,8 +1,8 @@
-package cn.bingoogol.screenexpert.util;
+package cn.bingoogol.bingo.util;
 
 import java.util.List;
 
-import cn.bingoogol.screenexpert.App;
+import cn.bingoogol.bingo.App;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
