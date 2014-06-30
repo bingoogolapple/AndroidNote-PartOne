@@ -30,5 +30,12 @@ public final class Constants {
 		public static final int CONNECT_TIMEOUT = 3000;
 		public static final int READ_TIMEOUT = 3000;
 	}
+	public static final class baidu {
+		public static final String APIKEY = "ASlyrtI6NQg0hU45PFPqXSzY";
+	}
+	public static final class youmi {
+		public static final String APPID = "219fd982bb19309c";
+		public static final String APPSECRET = "18987239db2193b1";
+	}
 
 }

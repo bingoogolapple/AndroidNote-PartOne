@@ -40,7 +40,6 @@ public class ScreenService extends Service {
 	private ScreenActionBinder mScreenActionBinder;
 	private WakeLock mWakeLock;
 	private long mLastShakeTime = 0;
-	
 
 	private BroadcastReceiver mScreenActionReceiver = new BroadcastReceiver() {
 		@Override
@@ -48,7 +47,7 @@ public class ScreenService extends Service {
 			Logger.i(TAG, "屏幕锁定，注册传感器");
 			if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
 				mSensorManager.registerListener(mSensorEventListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
-			} else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+			} else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
 				mSensorManager.unregisterListener(mSensorEventListener);
 			}
 		}

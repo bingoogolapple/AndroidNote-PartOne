@@ -12,7 +12,6 @@ import java.util.Date;
 import java.util.LinkedList;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -23,7 +22,12 @@ import cn.bingoogol.screenexpert.util.Logger;
 import cn.bingoogol.screenexpert.util.SpUtil;
 import cn.bingoogol.screenexpert.util.StorageUtil;
 
-public class App extends Application {
+import com.baidu.android.feedback.FeedbackManager;
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+import com.baidu.frontia.FrontiaApplication;
+
+public class App extends FrontiaApplication {
 	private static final String TAG = App.class.getSimpleName();
 	private static App mInstance;
 	private static LinkedList<Activity> mActivities = new LinkedList<Activity>();
@@ -33,6 +37,8 @@ public class App extends Application {
 		super.onCreate();
 		mInstance = this;
 		SpUtil.init();
+		FeedbackManager.getInstance(this).register(Constants.baidu.APIKEY);
+		PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, Constants.baidu.APIKEY);
 		Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
 	}
 

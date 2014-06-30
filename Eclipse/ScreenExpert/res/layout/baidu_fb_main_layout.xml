@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match"
+    android:background="@color/bg_root_black"
+    android:orientation="vertical" >
+
+    <LinearLayout style="@style/ll_toptitle" >
+
+        <ImageView
+            android:id="@+id/bd_fb_btn_back"
+            android:layout_width="@dimen/iconSize_normal"
+            android:layout_height="@dimen/iconSize_normal"
+            android:background="@drawable/btn_back_selector" />
+
+        <TextView
+            style="@style/tv_toptitle"
+            android:text="@string/bd_fb_feedback" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/bd_fb_listview"
+        style="@style/match_auto"
+        android:background="@drawable/baidu_fb_main_bg"
+        android:cacheColorHint="#0000"
+        android:divider="@null"
+        android:dividerHeight="@dimen/size_divider"
+        android:scrollbarStyle="outsideOverlay" />
+
+    <LinearLayout
+        style="@style/match_wrap_horizontal"
+        android:paddingLeft="@dimen/size_normal"
+        android:paddingRight="@dimen/size_normal" >
+
+        <EditText
+            android:id="@+id/bd_fb_et_sendmessage"
+            style="@style/auto_wrap"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/size_normal"
+            android:layout_marginRight="@dimen/size_normal"
+            android:background="@drawable/textfield_pressed"
+            android:hint="@string/bd_fb_input_content"
+            android:paddingLeft="@dimen/size_normal"
+            android:paddingRight="@dimen/size_normal"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_small" />
+
+        <Button
+            android:id="@+id/bd_fb_btn_send"
+            style="@style/wrap_wrap"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/size_normal"
+            android:background="@drawable/btn_blue_selector"
+            android:gravity="center"
+            android:padding="@dimen/size_normal"
+            android:text="@string/bd_fb_send"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_middle" />
+    </LinearLayout>
+
+</LinearLayout>

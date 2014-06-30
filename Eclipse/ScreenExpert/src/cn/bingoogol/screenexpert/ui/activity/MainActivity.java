@@ -19,8 +19,11 @@ import cn.bingoogol.screenexpert.receiver.DeviceKeeperReceiver;
 import cn.bingoogol.screenexpert.service.ScreenService;
 import cn.bingoogol.screenexpert.service.ScreenService.ScreenAction;
 import cn.bingoogol.screenexpert.ui.view.SettingView;
+import cn.bingoogol.screenexpert.util.Constants;
 import cn.bingoogol.screenexpert.util.Logger;
 import cn.bingoogol.screenexpert.util.SpUtil;
+
+import com.baidu.android.feedback.FeedbackManager;
 
 public class MainActivity extends BaseActivity implements OnClickListener {
 	private static final String TAG = MainActivity.class.getSimpleName();
@@ -28,6 +31,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 	private ComponentName mComponentName;
 	private SettingView mShakeSv;
 	private SettingView mOnekeySv;
+	private SettingView mAdSv;
 	private ScreenAction mScreenAction;
 	private ServiceConnection mScreenServiceConn = new ServiceConnection() {
 		@Override
@@ -45,17 +49,32 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		setContentView(R.layout.activity_main);
 		mShakeSv = (SettingView) findViewById(R.id.sv_main_shake);
 		mOnekeySv = (SettingView) findViewById(R.id.sv_main_onekey);
+		mAdSv = (SettingView) findViewById(R.id.sv_main_ad);
+		if (SpUtil.getIsShowAd()) {
+			showAd();
+		}
+	}
+
+	private void showAd() {
 		// 参数：appId, appSecret, 调试模式
-		AdManager.getInstance(this).init("219fd982bb19309c", "18987239db2193b1", false);
+		hideAd();
+		AdManager.getInstance(this).init(Constants.youmi.APPID, Constants.youmi.APPSECRET, false);
 		LinearLayout adLayout = (LinearLayout) findViewById(R.id.lv_main_ad);
 		AdView adView = new AdView(this, AdSize.FIT_SCREEN);
 		adLayout.addView(adView);
+	}
+
+	private void hideAd() {
+		LinearLayout adLayout = (LinearLayout) findViewById(R.id.lv_main_ad);
+		adLayout.removeAllViewsInLayout();
 	}
 
 	@Override
 	protected void setListener() {
 		mShakeSv.setOnClickListener(this);
 		mOnekeySv.setOnClickListener(this);
+		mAdSv.setOnClickListener(this);
+		findViewById(R.id.btn_main_feedback).setOnClickListener(this);
 	}
 
 	@Override
@@ -72,6 +91,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 		super.onStart();
 		mShakeSv.setChecked(SpUtil.getShakeUnlockScreen());
 		mOnekeySv.setChecked(SpUtil.getOnekeyLockScreen());
+		mAdSv.setChecked(SpUtil.getIsShowAd());
 	}
 
 	@Override
@@ -137,6 +157,20 @@ public class MainActivity extends BaseActivity implements OnClickListener {
 					activeDeviceAdmin();
 				}
 			}
+			break;
+		case R.id.sv_main_ad:
+			if (mAdSv.isChecked()) {
+				hideAd();
+				mAdSv.setChecked(false);
+				SpUtil.putIsShowAd(false);
+			} else {
+				showAd();
+				mAdSv.setChecked(true);
+				SpUtil.putIsShowAd(true);
+			}
+			break;
+		case R.id.btn_main_feedback:
+			FeedbackManager.getInstance(this).startFeedbackActivity();
 			break;
 		default:
 			break;

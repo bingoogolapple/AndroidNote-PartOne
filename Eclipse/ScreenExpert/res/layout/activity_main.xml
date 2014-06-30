@@ -34,9 +34,27 @@
         <cn.bingoogol.screenexpert.ui.view.SettingView
             android:id="@+id/sv_main_onekey"
             style="@style/match_wrap"
+            android:layout_marginBottom="@dimen/size_divider"
             screenexpert:content_off="已关闭"
             screenexpert:content_on="已开启"
             screenexpert:title="一键锁屏" />
+
+        <cn.bingoogol.screenexpert.ui.view.SettingView
+            android:id="@+id/sv_main_ad"
+            style="@style/match_wrap"
+            screenexpert:content_off="已关闭"
+            screenexpert:content_on="已开启"
+            screenexpert:title="是否显示广告" />
+
+        <Button
+            android:id="@+id/btn_main_feedback"
+            style="@style/match_wrap"
+            android:layout_marginTop="@dimen/size_normal"
+            android:background="@drawable/btn_blue_selector"
+            android:padding="@dimen/size_normal"
+            android:text="用户反馈"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_middle" />
     </LinearLayout>
 
     <LinearLayout

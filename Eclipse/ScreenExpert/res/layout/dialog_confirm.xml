@@ -16,7 +16,7 @@
         android:id="@+id/tv_dialog_confirm_msg"
         style="@style/match_wrap"
         android:gravity="center"
-        android:padding="@dimen/dialog_padding"
+        android:padding="@dimen/size_large"
         android:text="Message"
         android:textColor="@color/text_gray_dialog"
         android:textSize="@dimen/textSize_small" />

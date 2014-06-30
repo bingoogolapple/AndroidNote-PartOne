@@ -79,4 +79,12 @@ public class SpUtil {
 	public static boolean getOnekeyLockScreen() {
 		return getBoolean("onekey_lock_screen", false);
 	}
+
+	public static void putIsShowAd(boolean value) {
+		putBoolean("is_show_ad", value);
+	}
+
+	public static boolean getIsShowAd() {
+		return getBoolean("is_show_ad", true);
+	}
 }

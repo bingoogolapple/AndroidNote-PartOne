@@ -1,30 +1,34 @@
 <resources>
 
-    <style name="Theme.Splash" parent="@android:style/Theme.Black.NoTitleBar">
-
-        <!-- 修复第一次打开出现黑屏的情况 -->
+    <!-- 欢迎界面样式，修复第一次打开出现黑屏问题 -->
+    <style name="Theme.Splash" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <!-- 宽度包裹内容，高度 填充父窗体 -->
     <style name="wrap_match">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <!-- 宽度填充父窗体，高度包裹内容 -->
     <style name="match_wrap">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <!-- 宽度和高度都包裹内容 -->
     <style name="wrap_wrap">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <!-- 宽度和高度都填充父窗体 -->
     <style name="match_match">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+
     <!-- 宽度填充父窗体，高度自适应 -->
     <style name="match_auto">
         <item name="android:layout_width">match_parent</item>
@@ -51,14 +55,80 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <!-- 横线 -->
     <style name="match_one">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
     </style>
 
+    <!-- 竖线 -->
     <style name="one_match">
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="wrap_match_vertical" parent="@style/wrap_match">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="wrap_match_horizontal" parent="@style/wrap_match">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="match_wrap_vertical" parent="@style/match_wrap">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="match_wrap_horizontal" parent="@style/match_wrap">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="wrap_wrap_vertical" parent="@style/wrap_wrap">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="wrap_wrap_horizontal" parent="@style/wrap_wrap">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="match_match_vertical" parent="@style/match_match">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="match_match_horizontal" parent="@style/match_match">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="match_auto_vertical" parent="@style/match_auto">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="match_auto_horizontal" parent="@style/match_auto">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="auto_match_vertical" parent="@style/auto_match">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="auto_match_horizontal" parent="@style/match_match">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="wrap_auto_vertical" parent="@style/wrap_auto">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="wrap_auto_horizontal" parent="@style/wrap_auto">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="auto_wrap_vertical" parent="@style/auto_wrap">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="auto_wrap_horizontal" parent="@style/auto_wrap">
+        <item name="android:orientation">horizontal</item>
     </style>
 
     <!-- Dialog START -->
@@ -67,7 +137,7 @@
         <item name="android:background">@android:color/transparent</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
-    
+
     <style name="line_icon" parent="@style/wrap_wrap">
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:src">@drawable/dialog_divider</item>
@@ -75,7 +145,7 @@
 
     <style name="dialog_btn" parent="@style/auto_wrap">
         <item name="android:gravity">center</item>
-        <item name="android:padding">@dimen/dialog_padding</item>
+        <item name="android:padding">@dimen/size_large</item>
         <item name="android:layout_margin">@dimen/size_normal</item>
         <item name="android:textSize">@dimen/textSize_small</item>
         <item name="android:textColor">@android:color/white</item>
@@ -84,7 +154,7 @@
     <style name="dialog_title" parent="@style/match_wrap">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:padding">@dimen/dialog_padding</item>
+        <item name="android:padding">@dimen/size_large</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/textSize_large</item>
     </style>

@@ -14,7 +14,6 @@
     <!-- 公共的 END -->
     <!-- dialog START -->
     <dimen name="dialog_root_width">230dp</dimen>
-    <dimen name="dialog_padding">10dp</dimen>
     <dimen name="pw_dialog_progressbar_size">150dp</dimen>
     <dimen name="pw_dialog_progressbar_barWidth">10dp</dimen>
     <dimen name="pw_dialog_progressbar_rimWidth">5dp</dimen>

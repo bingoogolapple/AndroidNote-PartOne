@@ -6,4 +6,5 @@
     <issue id="NewApi">
         <ignore path="src/cn/bingoogol/screenexpert/service/OnekeyLockService.java" />
     </issue>
+    <issue id="UseCompoundDrawables" severity="ignore" />
 </lint>
