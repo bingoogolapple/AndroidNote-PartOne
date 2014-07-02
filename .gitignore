@@ -9,5 +9,6 @@
 *.class
 
 # generated files
-bin/
-gen/
+
+**bin/
+**gen/
