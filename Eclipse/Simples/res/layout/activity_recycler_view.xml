@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical" >
+
+    <TextView
+        style="@style/match_wrap"
+        android:text="Horizontal" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:scrollbars="horizontal" />
+
+    <TextView
+        style="@style/match_wrap"
+        android:text="Vertical" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_vertical"
+        style="@style/match_auto"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

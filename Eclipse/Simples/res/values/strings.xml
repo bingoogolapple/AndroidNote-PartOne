@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">Simples</string>
+    <string name="drawer_title">Navigation</string>
+
+    <!-- Description of the icon that opens the navigation drawer, used by accessibility. -->
+    <string name="drawer_open">Open navigation drawer</string>
+
+    <!-- Description of the icon that closes the navigation drawer, used by accessibility. -->
+    <string name="drawer_close">Close navigation drawer</string>
+</resources>

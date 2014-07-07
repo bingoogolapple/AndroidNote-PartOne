@@ -1,0 +1,10 @@
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container"
+    style="@style/match_match" >
+
+    <ListView
+        android:id="@+id/list"
+        style="@style/match_match" >
+    </ListView>
+
+</android.support.v4.widget.SwipeRefreshLayout>

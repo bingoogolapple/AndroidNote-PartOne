@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     2014-7-7 下午4:07:23                                                        
+
+     NDK    
+     description
+                   
+     AnyRJ                                                                
+     ====================================================================== -->
+<project name="NDK" default="BuildAllHeaders">
+	<description>
+            description
+    </description>
+
+	<!-- ================================= 
+          target: BuildAllHeaders              
+         ================================= -->
+	<target name="BuildAllHeaders">
+		<antcall target="BuildHelloString">
+		</antcall>
+		<antcall target="BuildHelloInt">
+		</antcall>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: BuildHelloString                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="BuildHelloString">
+		<javah destdir="./jni" classpath="./bin/classes/" class="cn.bingoogol.ndk.jni.HelloString">
+		</javah>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: BuildHelloInt                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="BuildHelloInt">
+		<javah destdir="./jni" classpath="./bin/classes/" class="cn.bingoogol.ndk.jni.HelloInt">
+		</javah>
+	</target>
+
+</project>

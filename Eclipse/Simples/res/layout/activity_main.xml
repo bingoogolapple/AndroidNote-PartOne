@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical" >
+
+    <Button
+        android:id="@+id/btn_main_SwipeRefreshLayout"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_middle"
+        android:onClick="onClick"
+        android:text="SwipeRefreshLayout" />
+
+    <Button
+        android:id="@+id/btn_main_RecyclerView"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_middle"
+        android:onClick="onClick"
+        android:text="RecyclerView" />
+
+    <Button
+        android:id="@+id/btn_main_CardView"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_middle"
+        android:onClick="onClick"
+        android:text="CardView" />
+
+    <Button
+        android:id="@+id/btn_main_MulTouch"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_middle"
+        android:onClick="onClick"
+        android:text="MulTouch" />
+    <Button
+        android:id="@+id/btn_main_Drawer"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_middle"
+        android:onClick="onClick"
+        android:text="Drawer" />
+</LinearLayout>

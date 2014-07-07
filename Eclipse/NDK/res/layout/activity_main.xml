@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical" >
+
+    <TextView
+        android:id="@+id/tv_main_result"
+        style="@style/match_wrap"
+        android:gravity="center"
+        android:padding="@dimen/size_large"
+        android:text="结果" />
+
+    <Button
+        android:id="@+id/btn_main_invoke"
+        style="@style/match_wrap"
+        android:onClick="onClick"
+        android:text="执行" />
+
+</LinearLayout>

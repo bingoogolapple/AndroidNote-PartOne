@@ -1,0 +1,11 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match" >
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        style="@style/wrap_wrap"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_launcher" />
+
+</RelativeLayout>
