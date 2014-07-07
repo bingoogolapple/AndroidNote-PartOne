@@ -3,7 +3,8 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := NDK
-LOCAL_SRC_FILES := NDK.cpp \
+LOCAL_SRC_FILES := CInvokeJava.cpp \
+					JavaInvokeC.cpp \
 					Hello.cpp
 
 # for logging

@@ -1,23 +1,21 @@
 #include <jni.h>
 #include <android/log.h>
-#include <string.h>
-#include "cn_bingoogol_ndk_jni_HelloInt.h"
-#include "cn_bingoogol_ndk_jni_HelloString.h"
+#include "cn_bingoogol_ndk_jni_JavaInvokeC.h"
 #include "Hello.h"
 
-#define TAG "NDK.cpp"
+#define TAG "JavaInvokeC"
 #define LOGI(...) __android_log_print(ANDROID_LOG_INFO, TAG, __VA_ARGS__)
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, TAG, __VA_ARGS__)
 
-JNIEXPORT jint JNICALL Java_cn_bingoogol_ndk_jni_HelloInt_add(JNIEnv *, jclass,
-		jint x, jint y) {
+JNIEXPORT jint JNICALL Java_cn_bingoogol_ndk_jni_JavaInvokeC_add(JNIEnv *env,
+		jclass, jint x, jint y) {
 	LOGE("错误");
 	LOGI("x = %d", x);
 	LOGI("y = %d", y);
 	return x + y;
 }
 
-JNIEXPORT jstring JNICALL Java_cn_bingoogol_ndk_jni_HelloString_getFullName(
+JNIEXPORT jstring JNICALL Java_cn_bingoogol_ndk_jni_JavaInvokeC_getFullName(
 		JNIEnv *env, jclass, jstring first, jstring second) {
 	// convert Java string to UTF-8
 	const char *_first = env->GetStringUTFChars(first, 0);

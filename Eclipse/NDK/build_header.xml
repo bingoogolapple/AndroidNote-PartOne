@@ -16,25 +16,25 @@
           target: BuildAllHeaders              
          ================================= -->
 	<target name="BuildAllHeaders">
-		<antcall target="BuildHelloString">
+		<antcall target="BuildJavaInvokeC">
 		</antcall>
-		<antcall target="BuildHelloInt">
+		<antcall target="BuildCInvokeJava">
 		</antcall>
 	</target>
 
 	<!-- - - - - - - - - - - - - - - - - - 
           target: BuildHelloString                      
          - - - - - - - - - - - - - - - - - -->
-	<target name="BuildHelloString">
-		<javah destdir="./jni" classpath="./bin/classes/" class="cn.bingoogol.ndk.jni.HelloString">
+	<target name="BuildJavaInvokeC">
+		<javah destdir="./jni" classpath="./bin/classes/" class="cn.bingoogol.ndk.jni.JavaInvokeC">
 		</javah>
 	</target>
 
 	<!-- - - - - - - - - - - - - - - - - - 
           target: BuildHelloInt                      
          - - - - - - - - - - - - - - - - - -->
-	<target name="BuildHelloInt">
-		<javah destdir="./jni" classpath="./bin/classes/" class="cn.bingoogol.ndk.jni.HelloInt">
+	<target name="BuildCInvokeJava">
+		<javah destdir="./jni" classpath="./bin/classes/" class="cn.bingoogol.ndk.jni.CInvokeJava">
 		</javah>
 	</target>
 

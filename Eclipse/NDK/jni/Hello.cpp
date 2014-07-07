@@ -13,7 +13,7 @@ Hello::Hello() {
 }
 
 char* Hello::getWords() {
-	return "Hello getWords";
+	return "Hello getWords 王浩";
 }
 
 Hello::~Hello() {

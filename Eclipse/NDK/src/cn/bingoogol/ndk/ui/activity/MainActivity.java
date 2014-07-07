@@ -4,15 +4,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import cn.bingoogol.ndk.R;
-import cn.bingoogol.ndk.jni.HelloInt;
-import cn.bingoogol.ndk.jni.HelloString;
+import cn.bingoogol.ndk.jni.CInvokeJava;
+import cn.bingoogol.ndk.jni.JavaInvokeC;
 
 public class MainActivity extends BaseActivity {
+	private CInvokeJava mCInvokeJava;
 	private TextView mResultTv;
 
 	static {
 		System.loadLibrary("NDK");
 	}
+
+	public native void callCInvokeJavaPrintString();
 
 	@Override
 	protected void initView() {
@@ -26,13 +29,21 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	protected void afterViews(Bundle savedInstanceState) {
+		mCInvokeJava = new CInvokeJava();
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.btn_main_invoke:
-			mResultTv.setText(HelloString.getFullName("王", "浩") + " --- " + HelloInt.add(2, 3));
+		case R.id.btn_main_JavaInvokeC:
+			mResultTv.setText(JavaInvokeC.getFullName("王", "浩") + " --- " + JavaInvokeC.add(2, 3));
+			break;
+		case R.id.btn_main_CInvokeJava:
+			mCInvokeJava.name = "呵呵";
+			mCInvokeJava.callHelloFromJava();
+			mCInvokeJava.callAdd();
+			mCInvokeJava.callPrintStaticString();
+			callCInvokeJavaPrintString();
 			break;
 
 		default:

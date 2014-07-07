@@ -10,9 +10,15 @@
         android:text="结果" />
 
     <Button
-        android:id="@+id/btn_main_invoke"
+        android:id="@+id/btn_main_JavaInvokeC"
         style="@style/match_wrap"
         android:onClick="onClick"
-        android:text="执行" />
+        android:text="JavaInvokeC" />
+
+    <Button
+        android:id="@+id/btn_main_CInvokeJava"
+        style="@style/match_wrap"
+        android:onClick="onClick"
+        android:text="CInvokeJava" />
 
 </LinearLayout>
