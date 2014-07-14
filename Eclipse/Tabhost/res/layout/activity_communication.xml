@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match_horizontal"
+    android:padding="@dimen/size_small" >
+
+    <fragment
+        android:id="@+id/fg_communication_left"
+        android:name="cn.bingoogol.tabhost.ui.fragment.LeftFragment"
+        style="@style/auto_match" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/fg_communication_right"
+        android:name="cn.bingoogol.tabhost.ui.fragment.RightFragment"
+        style="@style/auto_match" >
+    </fragment>
+
+</LinearLayout>

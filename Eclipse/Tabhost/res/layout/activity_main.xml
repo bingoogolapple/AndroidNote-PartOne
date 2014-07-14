@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match_vertical"
+    android:padding="@dimen/size_small" >
+
+    <Button
+        android:id="@+id/btn_main_horizontal"
+        style="@style/match_wrap"
+        android:text="水平Tabhost" />
+
+    <Button
+        android:id="@+id/btn_main_vertical"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_small"
+        android:text="垂直Tabhost" />
+
+    <Button
+        android:id="@+id/btn_main_communication"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_small"
+        android:text="Fragment间通信" />
+
+</LinearLayout>

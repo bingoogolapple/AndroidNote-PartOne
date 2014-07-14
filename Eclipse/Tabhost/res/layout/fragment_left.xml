@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical"
+    android:background="#9900FF00"
+    android:gravity="center" >
+
+    <Button
+        android:id="@+id/btn_left_change"
+        style="@style/wrap_wrap"
+        android:text="修改右边Fragment的内容"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_small" />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/wrap_wrap_horizontal"
+    android:background="@drawable/selector_tab"
+    android:gravity="center"
+    android:padding="@dimen/size_small" >
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/wrap_wrap"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_small" />
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        style="@style/wrap_wrap"
+        android:background="@drawable/ic_launcher" />
+
+</LinearLayout>

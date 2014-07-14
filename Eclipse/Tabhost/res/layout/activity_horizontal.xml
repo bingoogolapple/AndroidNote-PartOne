@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match_vertical" >
+
+    <android.support.v4.app.FragmentTabHost
+        android:id="@android:id/tabhost"
+        style="@style/match_match" >
+
+        <RelativeLayout style="@style/match_match" >
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                style="@style/match_wrap"
+                android:layout_alignParentBottom="true" >
+            </TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                style="@style/match_match"
+                android:layout_above="@android:id/tabs" >
+            </FrameLayout>
+        </RelativeLayout>
+    </android.support.v4.app.FragmentTabHost>
+
+</LinearLayout>
