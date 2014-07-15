@@ -131,4 +131,11 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+    <style name="tab_rb" parent="@style/auto_wrap">
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/selector_tab_tv</item>
+        <item name="android:gravity">center_horizontal|bottom</item>
+        <item name="android:background">@drawable/selector_tab_checked</item>
+    </style>
+
 </resources>

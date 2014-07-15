@@ -5,6 +5,7 @@
 
     <TextView
         style="@style/wrap_wrap"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/textSize_large" 
         android:text="TWO" />
 

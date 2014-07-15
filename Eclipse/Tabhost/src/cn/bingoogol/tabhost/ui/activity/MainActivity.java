@@ -14,9 +14,6 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	protected void setListener() {
-		findViewById(R.id.btn_main_horizontal).setOnClickListener(this);
-		findViewById(R.id.btn_main_vertical).setOnClickListener(this);
-		findViewById(R.id.btn_main_communication).setOnClickListener(this);
 	}
 
 	@Override
@@ -31,6 +28,9 @@ public class MainActivity extends BaseActivity {
 			break;
 		case R.id.btn_main_vertical:
 			startActivity(new Intent(this, VerticalActivity.class));
+			break;
+		case R.id.btn_main_weixin:
+			startActivity(new Intent(this, WeixinActivity.class));
 			break;
 		case R.id.btn_main_communication:
 			startActivity(new Intent(this, CommunicationActivity.class));

@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match_vertical"
+    android:padding="@dimen/size_small" >
+
+    <FrameLayout
+        android:id="@+id/realtabcontent"
+        style="@style/match_auto" />
+
+    <RadioGroup
+        android:id="@+id/rg_weixin_tab"
+        style="@style/match_wrap_horizontal"
+        android:background="@drawable/tab_footer_bg" >
+
+        <RadioButton
+            android:id="@+id/rb_weixin_one"
+            style="@style/tab_rb"
+            android:checked="true"
+            android:drawableTop="@drawable/selector_tab_one"
+            android:text="ONE" />
+
+        <RadioButton
+            android:id="@+id/rb_weixin_two"
+            style="@style/tab_rb"
+            android:drawableTop="@drawable/selector_tab_two"
+            android:text="TWO" />
+
+        <RadioButton
+            android:id="@+id/rb_weixin_three"
+            style="@style/tab_rb"
+            android:drawableTop="@drawable/selector_tab_three"
+            android:text="THREE" />
+
+        <RadioButton
+            android:id="@+id/rb_weixin_right"
+            style="@style/tab_rb"
+            android:drawableTop="@drawable/selector_tab_right"
+            android:text="RIGHT" />
+    </RadioGroup>
+
+    <android.support.v4.app.FragmentTabHost
+        android:id="@android:id/tabhost"
+        style="@style/match_wrap"
+        android:visibility="gone" >
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0" />
+    </android.support.v4.app.FragmentTabHost>
+
+</LinearLayout>

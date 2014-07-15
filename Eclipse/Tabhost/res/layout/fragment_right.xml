@@ -1,13 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/match_match_vertical"
-    android:background="#99FF0000"
+    android:background="#99CDDC39"
     android:gravity="center" >
 
     <TextView
         android:id="@+id/tv_right_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="修改前"
+        style="@style/wrap_wrap"
+        android:text="RIGHT"
         android:textColor="@android:color/white"
         android:textSize="@dimen/textSize_large" />
 

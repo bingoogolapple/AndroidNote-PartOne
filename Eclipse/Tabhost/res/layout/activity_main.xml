@@ -6,18 +6,28 @@
     <Button
         android:id="@+id/btn_main_horizontal"
         style="@style/match_wrap"
-        android:text="水平Tabhost" />
+        android:onClick="onClick"
+        android:text="水平FragmentTabhost" />
 
     <Button
         android:id="@+id/btn_main_vertical"
         style="@style/match_wrap"
         android:layout_marginTop="@dimen/size_small"
-        android:text="垂直Tabhost" />
+        android:onClick="onClick"
+        android:text="垂直FragmentTabhost" />
+
+    <Button
+        android:id="@+id/btn_main_weixin"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_small"
+        android:onClick="onClick"
+        android:text="仿旧版微信FragmentTabhost" />
 
     <Button
         android:id="@+id/btn_main_communication"
         style="@style/match_wrap"
         android:layout_marginTop="@dimen/size_small"
+        android:onClick="onClick"
         android:text="Fragment间通信" />
 
 </LinearLayout>

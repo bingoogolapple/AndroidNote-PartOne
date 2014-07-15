@@ -29,6 +29,7 @@
         <activity android:name="cn.bingoogol.tabhost.ui.activity.HorizontalActivity" />
         <activity android:name="cn.bingoogol.tabhost.ui.activity.VerticalActivity" />
         <activity android:name="cn.bingoogol.tabhost.ui.activity.CommunicationActivity" />
+        <activity android:name="cn.bingoogol.tabhost.ui.activity.WeixinActivity" />
     </application>
 
 </manifest>
