@@ -1,0 +1,11 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match_vertical"
+    android:padding="@dimen/size_small" >
+
+    <TextView
+        android:id="@+id/btn_main_horizontal"
+        style="@style/match_wrap"
+        android:text="ActionBar" />
+
+</LinearLayout>

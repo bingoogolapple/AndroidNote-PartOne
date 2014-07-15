@@ -1,15 +1,15 @@
 package cn.bingoogol.tabhost.ui.activity;
 
-import cn.bingoogol.tabhost.R;
-import cn.bingoogol.tabhost.ui.fragment.OneFragment;
-import cn.bingoogol.tabhost.ui.fragment.ThreeFragment;
-import cn.bingoogol.tabhost.ui.fragment.TwoFragment;
-import cn.bingoogol.tabhost.util.Logger;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
+import cn.bingoogol.tabhost.R;
+import cn.bingoogol.tabhost.ui.fragment.OneFragment;
+import cn.bingoogol.tabhost.ui.fragment.ThreeFragment;
+import cn.bingoogol.tabhost.ui.fragment.TwoFragment;
+import cn.bingoogol.tabhost.util.Logger;
 
 public class VerticalActivity extends BaseActivity {
 	private static final String TAG = VerticalActivity.class.getSimpleName();

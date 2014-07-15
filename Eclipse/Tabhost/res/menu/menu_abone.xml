@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/ab_actionbar_one"
+        android:icon="@drawable/selector_tab_one"
+        android:showAsAction="always"
+        android:title="ONE"/>
+    <item
+        android:id="@+id/ab_actionbar_two"
+        android:icon="@drawable/selector_tab_two"
+        android:showAsAction="always"
+        android:title="TWO"/>
+    <item
+        android:id="@+id/ab_actionbar_three"
+        android:icon="@drawable/selector_tab_three"
+        android:showAsAction="ifRoom"
+        android:title="THREE"/>
+    <item
+        android:id="@+id/ab_actionbar_right"
+        android:icon="@drawable/selector_tab_right"
+        android:showAsAction="ifRoom"
+        android:title="RIGHT"/>
+
+</menu>

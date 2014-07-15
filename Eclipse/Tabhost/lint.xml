@@ -2,5 +2,11 @@
 <lint>
     <issue id="ContentDescription" severity="ignore" />
     <issue id="HardcodedText" severity="ignore" />
+    <issue id="NewApi" severity="ignore">
+        <ignore path="AndroidManifest.xml" />
+    </issue>
+    <issue id="UnusedAttribute" severity="ignore">
+        <ignore path="AndroidManifest.xml" />
+    </issue>
     <issue id="UseCompoundDrawables" severity="ignore" />
 </lint>

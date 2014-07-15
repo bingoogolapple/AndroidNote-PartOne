@@ -30,4 +30,11 @@
         android:onClick="onClick"
         android:text="Fragment间通信" />
 
+    <Button
+        android:id="@+id/btn_main_actionbar"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_small"
+        android:onClick="onClick"
+        android:text="ActionBar" />
+
 </LinearLayout>

@@ -35,6 +35,9 @@ public class MainActivity extends BaseActivity {
 		case R.id.btn_main_communication:
 			startActivity(new Intent(this, CommunicationActivity.class));
 			break;
+		case R.id.btn_main_actionbar:
+			startActivity(new Intent(this, ABOneActivity.class));
+			break;
 		default:
 			break;
 		}
