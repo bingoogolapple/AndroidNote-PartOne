@@ -16,7 +16,7 @@ public class ABThreeActivity extends BaseActivity {
 	private static final String TAG = ABThreeActivity.class.getSimpleName();
 
 	@Override
-	protected void initView() {
+	protected void initView(Bundle savedInstanceState) {
 		setTitle("这是标题3");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}

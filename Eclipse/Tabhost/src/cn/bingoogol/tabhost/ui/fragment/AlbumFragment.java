@@ -1,18 +1,15 @@
 package cn.bingoogol.tabhost.ui.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.os.Message;
 import android.view.View;
-import android.view.ViewGroup;
 import cn.bingoogol.tabhost.R;
 import cn.bingoogol.tabhost.util.Logger;
 
-public class AlbumFragment extends Fragment {
+public class AlbumFragment extends BaseFragment {
 
 	private static final String TAG = AlbumFragment.class.getSimpleName();
-	private View mRootView;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -27,19 +24,21 @@ public class AlbumFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	protected void initView(Bundle savedInstanceState) {
 		Logger.i(TAG, "onCreateView Album");
-		if (mRootView == null) {
-			Logger.i(TAG, "mRootView为空");
-			mRootView = inflater.inflate(R.layout.fragment_two, container, false);
-		} else {
-			Logger.i(TAG, "mRootView不为空");
-		}
-		ViewGroup parent = (ViewGroup) mRootView.getParent();
-		if (parent != null) {
-			parent.removeView(mRootView);
-		}
-		return mRootView;
+		setRootView(R.layout.fragment_two);
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void afterViews(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -96,4 +95,15 @@ public class AlbumFragment extends Fragment {
 		Logger.i(TAG, "onDetach Album");
 	}
 
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void handleMsg(Message msg) {
+		// TODO Auto-generated method stub
+
+	}
 }

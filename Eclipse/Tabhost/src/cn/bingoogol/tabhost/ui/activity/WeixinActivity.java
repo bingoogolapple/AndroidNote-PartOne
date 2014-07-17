@@ -20,7 +20,7 @@ public class WeixinActivity extends BaseActivity {
 	private RadioGroup mTabRg = null;
 
 	@Override
-	protected void initView() {
+	protected void initView(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_weixin);
 		Logger.i(TAG, "onCreate WeixinActivity");
 		mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);

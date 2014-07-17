@@ -16,7 +16,7 @@ public class HorizontalActivity extends BaseActivity {
 	private FragmentTabHost mTabHost = null;
 
 	@Override
-	protected void initView() {
+	protected void initView(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_horizontal);
 		Logger.i(TAG, "onCreate HorizontalActivity");
 		mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);

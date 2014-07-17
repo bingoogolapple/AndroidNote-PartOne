@@ -2,15 +2,13 @@ package cn.bingoogol.tabhost.ui.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.os.Message;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import cn.bingoogol.tabhost.R;
 import cn.bingoogol.tabhost.util.Logger;
 
-public class RightFragment extends Fragment {
+public class RightFragment extends BaseFragment {
 	private static final String TAG = RightFragment.class.getSimpleName();
 	private TextView mTestTv;
 
@@ -27,11 +25,22 @@ public class RightFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	protected void initView(Bundle savedInstanceState) {
 		Logger.i(TAG, "onCreateView Right");
-		View rootView = inflater.inflate(R.layout.fragment_right, container, false);
-		mTestTv = (TextView) rootView.findViewById(R.id.tv_right_test);
-		return rootView;
+		setRootView(R.layout.fragment_right);
+		mTestTv = (TextView) mRootView.findViewById(R.id.tv_right_test);
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void afterViews(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+
 	}
 
 	public void setTestText(String text) {
@@ -90,5 +99,17 @@ public class RightFragment extends Fragment {
 	public void onDetach() {
 		super.onDetach();
 		Logger.i(TAG, "onDetach Right");
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void handleMsg(Message msg) {
+		// TODO Auto-generated method stub
+		
 	}
 }

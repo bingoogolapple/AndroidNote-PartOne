@@ -14,7 +14,7 @@ public class ABOneActivity extends BaseActivity {
 	private static final String TAG = ABOneActivity.class.getSimpleName();
 
 	@Override
-	protected void initView() {
+	protected void initView(Bundle savedInstanceState) {
 		setTitle("这是标题");
 		// getActionBar().hide();
 		setContentView(R.layout.activity_abone);

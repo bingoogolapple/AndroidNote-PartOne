@@ -20,7 +20,7 @@ public class ABFourActivity extends BaseActivity {
 	private static final String TAG = ABFourActivity.class.getSimpleName();
 
 	@Override
-	protected void initView() {
+	protected void initView(Bundle savedInstanceState) {
 		setTitle("标题4");
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);

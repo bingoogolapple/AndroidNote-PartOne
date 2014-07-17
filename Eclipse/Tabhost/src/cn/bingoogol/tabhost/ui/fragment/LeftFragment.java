@@ -2,18 +2,13 @@ package cn.bingoogol.tabhost.ui.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.os.Message;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
 import cn.bingoogol.tabhost.R;
 import cn.bingoogol.tabhost.util.Logger;
 
-public class LeftFragment extends Fragment implements OnClickListener {
+public class LeftFragment extends BaseFragment {
 	private static final String TAG = LeftFragment.class.getSimpleName();
-	private Button mChangeBtn;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -28,12 +23,20 @@ public class LeftFragment extends Fragment implements OnClickListener {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	protected void initView(Bundle savedInstanceState) {
 		Logger.i(TAG, "onCreateView Left");
-		View rootView = inflater.inflate(R.layout.fragment_left, container, false);
-		mChangeBtn = (Button) rootView.findViewById(R.id.btn_left_change);
-		mChangeBtn.setOnClickListener(this);
-		return rootView;
+		setRootView(R.layout.fragment_left);
+	}
+
+	@Override
+	protected void setListener() {
+		mRootView.findViewById(R.id.btn_left_change).setOnClickListener(this);
+	}
+
+	@Override
+	protected void afterViews(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -98,5 +101,11 @@ public class LeftFragment extends Fragment implements OnClickListener {
 			// getFragmentManager().findFragmentByTag("");
 			rightFragment.setTestText("内容变化了");
 		}
+	}
+
+	@Override
+	protected void handleMsg(Message msg) {
+		// TODO Auto-generated method stub
+
 	}
 }

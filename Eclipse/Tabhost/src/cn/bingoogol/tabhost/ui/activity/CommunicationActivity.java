@@ -9,7 +9,7 @@ public class CommunicationActivity extends BaseActivity {
 	private static final String TAG = CommunicationActivity.class.getSimpleName();
 
 	@Override
-	protected void initView() {
+	protected void initView(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_communication);
 		Logger.i(TAG, "onCreate CommunicationActivity");
 	}

@@ -8,7 +8,7 @@ import cn.bingoogol.tabhost.R;
 public class MainActivity extends BaseActivity {
 
 	@Override
-	protected void initView() {
+	protected void initView(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_main);
 	}
 

@@ -16,7 +16,7 @@ public class VerticalActivity extends BaseActivity {
 	private FragmentTabHost mTabHost = null;
 
 	@Override
-	protected void initView() {
+	protected void initView(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_vertical);
 		Logger.i(TAG, "onCreate VerticalActivity");
 		mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);

@@ -2,16 +2,13 @@ package cn.bingoogol.tabhost.ui.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.os.Message;
 import android.view.View;
-import android.view.ViewGroup;
 import cn.bingoogol.tabhost.R;
 import cn.bingoogol.tabhost.util.Logger;
 
-public class TwoFragment extends Fragment {
+public class TwoFragment extends BaseFragment {
 	private static final String TAG = TwoFragment.class.getSimpleName();
-	private View mRootView;
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -26,19 +23,21 @@ public class TwoFragment extends Fragment {
 	}
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	protected void initView(Bundle savedInstanceState) {
 		Logger.i(TAG, "onCreateView Two");
-		if (mRootView == null) {
-			Logger.i(TAG, "mRootView为空");
-			mRootView = inflater.inflate(R.layout.fragment_two, container, false);
-		} else {
-			Logger.i(TAG, "mRootView不为空");
-		}
-		ViewGroup parent = (ViewGroup) mRootView.getParent();
-		if (parent != null) {
-			parent.removeView(mRootView);
-		}
-		return mRootView;
+		setRootView(R.layout.fragment_two);
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void afterViews(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -94,5 +93,17 @@ public class TwoFragment extends Fragment {
 	public void onDetach() {
 		super.onDetach();
 		Logger.i(TAG, "onDetach Two");
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void handleMsg(Message msg) {
+		// TODO Auto-generated method stub
+		
 	}
 }

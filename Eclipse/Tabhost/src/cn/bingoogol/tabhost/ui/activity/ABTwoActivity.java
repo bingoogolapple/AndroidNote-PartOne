@@ -22,7 +22,7 @@ public class ABTwoActivity extends BaseActivity {
 	private static final String TAG = ABTwoActivity.class.getSimpleName();
 
 	@Override
-	protected void initView() {
+	protected void initView(Bundle savedInstanceState) {
 		setTitle("这是标题2");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setOverflowShowingAlways();
