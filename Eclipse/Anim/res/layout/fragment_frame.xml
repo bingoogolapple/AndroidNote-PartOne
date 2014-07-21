@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical"
+    android:background="#800f"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/iv_frame"
+        style="@style/wrap_wrap"
+        android:src="@anim/frame1" />
+
+    <Button
+        android:id="@+id/btn_frame_start"
+        style="@style/wrap_wrap"
+        android:text="start" />
+
+    <Button
+        android:id="@+id/btn_frame_stop"
+        style="@style/wrap_wrap"
+        android:text="stop" />
+
+</LinearLayout>

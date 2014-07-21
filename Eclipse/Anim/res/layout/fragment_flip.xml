@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical"
+    android:background="#800f"
+    android:gravity="center" >
+
+    <View
+        android:id="@+id/v_flip1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#8f00" />
+    <View
+        android:id="@+id/v_flip2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        android:background="#80f0" />
+
+    <Button
+        android:id="@+id/btn_flip"
+        style="@style/wrap_wrap"
+        android:text="flip" />
+
+</LinearLayout>

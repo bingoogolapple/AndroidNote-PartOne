@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical"
+    android:background="#800f"
+    android:gravity="center" >
+
+    <View
+        android:id="@+id/v_alpha"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#f00" />
+
+    <Button
+        android:id="@+id/btn_alpha1"
+        style="@style/wrap_wrap"
+        android:text="alpha1" />
+
+</LinearLayout>

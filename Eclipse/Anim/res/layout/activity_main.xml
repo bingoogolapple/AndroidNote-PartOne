@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical" >
+
+    <FrameLayout
+        android:id="@+id/fl_main_container"
+        style="@style/match_auto" >
+    </FrameLayout>
+
+    <HorizontalScrollView
+        style="@style/match_wrap"
+        android:background="#0f0" >
+
+        <LinearLayout
+            style="@style/wrap_match_horizontal"
+            android:padding="@dimen/size_small" >
+
+            <Button
+                android:id="@+id/btn_main_shake"
+                style="@style/wrap_wrap"
+                android:text="shake"
+                android:textSize="@dimen/textSize_middle" />
+
+            <Button
+                android:id="@+id/btn_main_flip"
+                style="@style/wrap_wrap"
+                android:text="flip"
+                android:textSize="@dimen/textSize_middle" />
+
+            <Button
+                android:id="@+id/btn_main_alpha"
+                style="@style/wrap_wrap"
+                android:text="alpha"
+                android:textSize="@dimen/textSize_middle" />
+
+            <Button
+                android:id="@+id/btn_main_scale"
+                style="@style/wrap_wrap"
+                android:text="scale"
+                android:textSize="@dimen/textSize_middle" />
+
+            <Button
+                android:id="@+id/btn_main_translate"
+                style="@style/wrap_wrap"
+                android:text="translate"
+                android:textSize="@dimen/textSize_middle" />
+
+            <Button
+                android:id="@+id/btn_main_rotate"
+                style="@style/wrap_wrap"
+                android:text="rotate"
+                android:textSize="@dimen/textSize_middle" />
+            <Button
+                android:id="@+id/btn_main_frame"
+                style="@style/wrap_wrap"
+                android:text="frame"
+                android:textSize="@dimen/textSize_middle" />
+            <Button
+                android:id="@+id/btn_main_complex"
+                style="@style/wrap_wrap"
+                android:text="complex"
+                android:textSize="@dimen/textSize_middle" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>
