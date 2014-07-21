@@ -8,6 +8,7 @@ import cn.bingoogol.anim.ui.fragment.AlphaFragment;
 import cn.bingoogol.anim.ui.fragment.ComplexFragment;
 import cn.bingoogol.anim.ui.fragment.FlipFragment;
 import cn.bingoogol.anim.ui.fragment.FrameFragment;
+import cn.bingoogol.anim.ui.fragment.MatrixFragment;
 import cn.bingoogol.anim.ui.fragment.RoateFragment;
 import cn.bingoogol.anim.ui.fragment.ScaleFragment;
 import cn.bingoogol.anim.ui.fragment.ShakeFragment;
@@ -30,6 +31,7 @@ public class MainActivity extends BaseActivity {
 		findViewById(R.id.btn_main_rotate).setOnClickListener(this);
 		findViewById(R.id.btn_main_frame).setOnClickListener(this);
 		findViewById(R.id.btn_main_complex).setOnClickListener(this);
+		findViewById(R.id.btn_main_matrix).setOnClickListener(this);
 	}
 
 	@Override
@@ -63,6 +65,9 @@ public class MainActivity extends BaseActivity {
 			break;
 		case R.id.btn_main_complex:
 			changeContent(new ComplexFragment());
+			break;
+		case R.id.btn_main_matrix:
+			changeContent(new MatrixFragment());
 			break;
 
 		default:

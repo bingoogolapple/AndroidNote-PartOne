@@ -60,6 +60,11 @@
                 style="@style/wrap_wrap"
                 android:text="complex"
                 android:textSize="@dimen/textSize_middle" />
+            <Button
+                android:id="@+id/btn_main_matrix"
+                style="@style/wrap_wrap"
+                android:text="matrix"
+                android:textSize="@dimen/textSize_middle" />
         </LinearLayout>
     </HorizontalScrollView>
 

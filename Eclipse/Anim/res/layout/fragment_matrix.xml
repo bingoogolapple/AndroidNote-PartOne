@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical"
+    android:background="#800f"
+    android:gravity="center_horizontal" >
+
+    <cn.bingoogol.anim.ui.view.MatrixOneImageView
+        android:id="@+id/moiv_matrix"
+        style="@style/wrap_wrap"
+        android:layout_marginTop="@dimen/size_middle"
+        android:src="@drawable/creative" />
+
+    <cn.bingoogol.anim.ui.view.MatrixTwoImageView
+        android:id="@+id/mtiv_matrix"
+        style="@style/wrap_wrap"
+        android:layout_marginTop="@dimen/size_middle"
+        android:src="@drawable/creative" />
+
+</LinearLayout>
