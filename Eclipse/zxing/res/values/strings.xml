@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">zxing</string>
+    <string name="tips">请输入你要生成的内容：</string>
+    <string name="input_content">输入你需要转换的内容</string>
+    <string name="one_code">一维码</string>
+    <string name="two_code">二维码</string>
+    <string name="image_content_description">生成的图片</string>
+
+</resources>

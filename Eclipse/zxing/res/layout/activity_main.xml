@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match_vertical" >
+
+    <Button
+        android:id="@+id/btn_main_scan"
+        style="@style/wrap_wrap"
+        android:text="扫描二维码" />
+
+    <TextView
+        android:id="@+id/tv_main_result"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_small"
+        android:text="结果" />
+
+    <LinearLayout
+        style="@style/match_wrap_horizontal"
+        android:layout_marginTop="@dimen/size_small" >
+
+        <EditText
+            android:id="@+id/et_main_content"
+            style="@style/auto_wrap"
+            android:hint="请输入要转换的内容" />
+        <Button
+            android:id="@+id/btn_main_generate1"
+            style="@style/wrap_wrap"
+            android:text="生成条形码" />
+        <Button
+            android:id="@+id/btn_main_generate2"
+            style="@style/wrap_wrap"
+            android:text="生成二维码" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_main_result"
+        style="@style/wrap_wrap"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/size_small"
+        android:src="@drawable/ic_launcher" />
+
+</LinearLayout>
