@@ -19,7 +19,7 @@ public class BingoView extends View {
 	}
 
 	private void initView(Context context) {
-
+		//View view = View.inflate(context, R.layout., this);
 	}
 
 	private void initAttrs(Context context, AttributeSet attrs) {
