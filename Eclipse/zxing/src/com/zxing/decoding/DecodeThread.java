@@ -23,10 +23,11 @@ import java.util.concurrent.CountDownLatch;
 import android.os.Handler;
 import android.os.Looper;
 
+import cn.bingoogol.zxing.ui.activity.ScanActivity;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.google.zxing.ResultPointCallback;
-import com.zxing.activity.CaptureActivity;
 
 /**
  * This thread does all the heavy lifting of decoding the images.
@@ -35,12 +36,12 @@ import com.zxing.activity.CaptureActivity;
 final class DecodeThread extends Thread {
 
   public static final String BARCODE_BITMAP = "barcode_bitmap";
-  private final CaptureActivity activity;
+  private final ScanActivity activity;
   private final Hashtable<DecodeHintType, Object> hints;
   private Handler handler;
   private final CountDownLatch handlerInitLatch;
 
-  DecodeThread(CaptureActivity activity,
+  DecodeThread(ScanActivity activity,
                Vector<BarcodeFormat> decodeFormats,
                String characterSet,
                ResultPointCallback resultPointCallback) {

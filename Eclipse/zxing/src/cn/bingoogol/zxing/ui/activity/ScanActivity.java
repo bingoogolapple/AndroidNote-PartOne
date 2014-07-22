@@ -1,4 +1,4 @@
-package com.zxing.activity;
+package cn.bingoogol.zxing.ui.activity;
 
 import java.io.IOException;
 import java.util.Vector;
@@ -25,18 +25,13 @@ import cn.bingoogol.zxing.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.zxing.camera.CameraManager;
-import com.zxing.decoding.CaptureActivityHandler;
+import com.zxing.decoding.ScanActivityHandler;
 import com.zxing.decoding.InactivityTimer;
 import com.zxing.view.ViewfinderView;
 
-/**
- * Initial the camera
- * 
- * @author Ryan.Tang
- */
-public class CaptureActivity extends Activity implements Callback {
+public class ScanActivity extends Activity implements Callback {
 
-	private CaptureActivityHandler handler;
+	private ScanActivityHandler handler;
 	private ViewfinderView viewfinderView;
 	private boolean hasSurface;
 	private Vector<BarcodeFormat> decodeFormats;
@@ -48,12 +43,10 @@ public class CaptureActivity extends Activity implements Callback {
 	private boolean vibrate;
 	private Button cancelScanButton;
 
-	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_camera);
-		// ViewUtil.addTopView(getApplicationContext(), this, R.string.scan_card);
 		CameraManager.init(getApplication());
 		viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
 		cancelScanButton = (Button) this.findViewById(R.id.btn_cancel_scan);
@@ -61,6 +54,7 @@ public class CaptureActivity extends Activity implements Callback {
 		inactivityTimer = new InactivityTimer(this);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -88,7 +82,7 @@ public class CaptureActivity extends Activity implements Callback {
 
 			@Override
 			public void onClick(View v) {
-				CaptureActivity.this.finish();
+				ScanActivity.this.finish();
 			}
 		});
 	}
@@ -121,7 +115,7 @@ public class CaptureActivity extends Activity implements Callback {
 		String resultString = result.getText();
 		// FIXME
 		if (resultString.equals("")) {
-			Toast.makeText(CaptureActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(ScanActivity.this, "Scan failed!", Toast.LENGTH_SHORT).show();
 		} else {
 			// System.out.println("Result:"+resultString);
 			Intent resultIntent = new Intent();
@@ -130,7 +124,7 @@ public class CaptureActivity extends Activity implements Callback {
 			resultIntent.putExtras(bundle);
 			this.setResult(RESULT_OK, resultIntent);
 		}
-		CaptureActivity.this.finish();
+		ScanActivity.this.finish();
 	}
 
 	private void initCamera(SurfaceHolder surfaceHolder) {
@@ -142,7 +136,7 @@ public class CaptureActivity extends Activity implements Callback {
 			return;
 		}
 		if (handler == null) {
-			handler = new CaptureActivityHandler(this, decodeFormats, characterSet);
+			handler = new ScanActivityHandler(this, decodeFormats, characterSet);
 		}
 	}
 
@@ -157,7 +151,6 @@ public class CaptureActivity extends Activity implements Callback {
 			hasSurface = true;
 			initCamera(holder);
 		}
-
 	}
 
 	@Override
@@ -176,7 +169,6 @@ public class CaptureActivity extends Activity implements Callback {
 
 	public void drawViewfinder() {
 		viewfinderView.drawViewfinder();
-
 	}
 
 	private void initBeepSound() {

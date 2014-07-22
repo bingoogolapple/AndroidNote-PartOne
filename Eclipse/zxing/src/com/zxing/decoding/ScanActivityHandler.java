@@ -27,21 +27,21 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import cn.bingoogol.zxing.R;
+import cn.bingoogol.zxing.ui.activity.ScanActivity;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
-import com.zxing.activity.CaptureActivity;
 import com.zxing.camera.CameraManager;
 import com.zxing.view.ViewfinderResultPointCallback;
 
 /**
  * This class handles all the messaging which comprises the state machine for capture.
  */
-public final class CaptureActivityHandler extends Handler {
+public final class ScanActivityHandler extends Handler {
 
-  private static final String TAG = CaptureActivityHandler.class.getSimpleName();
+  private static final String TAG = ScanActivityHandler.class.getSimpleName();
 
-  private final CaptureActivity activity;
+  private final ScanActivity activity;
   private final DecodeThread decodeThread;
   private State state;
 
@@ -51,7 +51,7 @@ public final class CaptureActivityHandler extends Handler {
     DONE
   }
 
-  public CaptureActivityHandler(CaptureActivity activity, Vector<BarcodeFormat> decodeFormats,
+  public ScanActivityHandler(ScanActivity activity, Vector<BarcodeFormat> decodeFormats,
       String characterSet) {
     this.activity = activity;
     decodeThread = new DecodeThread(activity, decodeFormats, characterSet,
