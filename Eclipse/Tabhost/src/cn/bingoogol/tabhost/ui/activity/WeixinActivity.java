@@ -73,36 +73,36 @@ public class WeixinActivity extends BaseActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		Logger.i(TAG, "onStart CommunicationActivity");
+		Logger.i(TAG, "onStart WeixinActivity");
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Logger.i(TAG, "onResume CommunicationActivity");
+		Logger.i(TAG, "onResume WeixinActivity");
 	}
 
 	@Override
 	protected void onResumeFragments() {
 		super.onResumeFragments();
-		Logger.i(TAG, "onResumeFragments CommunicationActivity");
+		Logger.i(TAG, "onResumeFragments WeixinActivity");
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		Logger.i(TAG, "onPause CommunicationActivity");
+		Logger.i(TAG, "onPause WeixinActivity");
 	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		Logger.i(TAG, "onStop CommunicationActivity");
+		Logger.i(TAG, "onStop WeixinActivity");
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Logger.i(TAG, "onDestroy CommunicationActivity");
+		Logger.i(TAG, "onDestroy WeixinActivity");
 	}
 }

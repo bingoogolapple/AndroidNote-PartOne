@@ -1,0 +1,13 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical"
+    android:background="#990000FF"
+    android:gravity="center" >
+
+    <android.gesture.GestureOverlayView
+        android:id="@+id/gov_gesture"
+        style="@style/match_match"
+        android:layout_margin="@dimen/size_large_large"
+        android:background="#9900FF00"
+        android:gestureColor="@color/blue" />
+
+</LinearLayout>

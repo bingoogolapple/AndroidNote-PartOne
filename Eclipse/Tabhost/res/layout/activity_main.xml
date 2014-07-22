@@ -22,6 +22,13 @@
         android:layout_marginTop="@dimen/size_small"
         android:onClick="onClick"
         android:text="仿旧版微信FragmentTabhost" />
+    
+    <Button
+        android:id="@+id/btn_main_wechat"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_small"
+        android:onClick="onClick"
+        android:text="仿新版微信" />
 
     <Button
         android:id="@+id/btn_main_communication"

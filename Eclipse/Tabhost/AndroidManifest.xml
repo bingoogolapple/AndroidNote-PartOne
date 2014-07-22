@@ -29,6 +29,11 @@
         <activity android:name="cn.bingoogol.tabhost.ui.activity.HorizontalActivity" />
         <activity android:name="cn.bingoogol.tabhost.ui.activity.VerticalActivity" />
         <activity android:name="cn.bingoogol.tabhost.ui.activity.WeixinActivity" />
+        <activity
+            android:name="cn.bingoogol.tabhost.ui.activity.WechatActivity"
+            android:label="@string/weichat"
+            android:logo="@drawable/logo"
+            android:theme="@style/Theme.WeChat" />
         <activity android:name="cn.bingoogol.tabhost.ui.activity.CommunicationActivity" />
         <activity
             android:name="cn.bingoogol.tabhost.ui.activity.ABOneActivity"

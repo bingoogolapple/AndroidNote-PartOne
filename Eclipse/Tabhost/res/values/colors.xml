@@ -4,5 +4,6 @@
     <color name="blue_normal">#A6BAFF</color>
     <color name="blue">#4D73FF</color>
     <color name="blue_trans">#6889FF</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
 
 </resources>

@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/match_match_vertical"
+    android:padding="@dimen/size_small" >
+
+    <cn.bingoogol.tabhost.ui.view.PagerSlidingTabStrip
+        android:id="@+id/psts_wechat_tab"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_wechat_pager"
+        style="@style/match_match" />
+
+</LinearLayout>
