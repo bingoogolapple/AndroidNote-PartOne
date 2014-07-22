@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- 公共的 START -->
+    <dimen name="iconSize_small">35dp</dimen>
+    <dimen name="iconSize_middle">50dp</dimen>
+    <dimen name="iconSize_large">65dp</dimen>
+    <dimen name="size_divider">2dp</dimen>
+    <dimen name="size_small">5dp</dimen>
+    <dimen name="size_middle">10dp</dimen>
+    <dimen name="size_large">15dp</dimen>
+    <dimen name="size_large_large">20dp</dimen>
+    <dimen name="textSize_small">15sp</dimen>
+    <dimen name="textSize_middle">20sp</dimen>
+    <dimen name="textSize_large">30sp</dimen>
+
+    <!-- 公共的 END -->
+
+</resources>
