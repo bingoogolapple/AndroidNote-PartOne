@@ -141,13 +141,9 @@ public class GestureFragment extends BaseFragment {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	protected void handleMsg(Message msg) {
-		// TODO Auto-generated method stub
-
 	}
 }

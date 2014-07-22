@@ -38,9 +38,9 @@ public class WechatActivity extends BaseActivity {
 		setOverflowShowingAlways();
 		mDisplayMetrics = getResources().getDisplayMetrics();
 		ViewPager pagerVp = (ViewPager) findViewById(R.id.vp_wechat_pager);
-		
+
 		pagerVp.setOffscreenPageLimit(2);
-		
+
 		mTabPats = (PagerSlidingTabStrip) findViewById(R.id.psts_wechat_tab);
 		pagerVp.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 		mTabPats.setViewPager(pagerVp);
@@ -49,7 +49,7 @@ public class WechatActivity extends BaseActivity {
 
 	@Override
 	protected void setListener() {
-		
+
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class WechatActivity extends BaseActivity {
 		super.onDestroy();
 		Logger.i(TAG, "onDestroy WechatActivity");
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu_wechat, menu);
@@ -128,7 +128,7 @@ public class WechatActivity extends BaseActivity {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 对PagerSlidingTabStrip的各项属性进行赋值。
 	 */
@@ -168,7 +168,7 @@ public class WechatActivity extends BaseActivity {
 		public int getCount() {
 			return titles.length;
 		}
-
+		
 		@Override
 		public Fragment getItem(int position) {
 			switch (position) {

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="ClickableViewAccessibility">
+        <ignore path="src/cn/bingoogol/tabhost/ui/fragment/GestureFragment.java" />
+    </issue>
     <issue id="ContentDescription" severity="ignore" />
     <issue id="HandlerLeak" severity="ignore" />
     <issue id="HardcodedText" severity="ignore" />
+    <issue id="InflateParams">
+        <ignore path="src/cn/bingoogol/tabhost/ui/activity/SplashActivity.java" />
+    </issue>
     <issue id="NewApi" severity="ignore">
         <ignore path="AndroidManifest.xml" />
     </issue>

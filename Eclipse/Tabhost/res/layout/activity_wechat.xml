@@ -8,6 +8,17 @@
         android:layout_width="match_parent"
         android:layout_height="40dp" />
 
+    <!--
+    1. ViewPager出现的问题
+ViewPager占满全屏问题 : ViewPager在XML中定义了android:layout_height 和 android:layout_width 之后, 
+不论这两个属性的值是 fill_parent 还是 wrap_content, 都会出现ViewPager占满全屏的问题;
+不使用固定值定义宽高: 为了使ViewPager能适配各种类型的手机, 如果给ViewPager定义了高度和宽度, 
+与各种手机的界面兼容性肯定要大大的降低, 因此出现了下面的解决方案;
+2. 解决方案
+代码中添加组件 : 不在XML界面定义该组件, 可以在布局文件中,定义一个LinearLayout容器, 然后在代码中动态添加ViewPager;
+好处 : 这样的好处是可以在代码中获取屏幕的宽高, 我们可以根据比例设定ViewPager的大小, 这样就解决了屏幕适配的问题;
+    -->
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_wechat_pager"
         style="@style/match_match" />
