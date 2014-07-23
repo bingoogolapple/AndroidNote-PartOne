@@ -14,8 +14,8 @@ public class BingoView extends View {
 
 	public BingoView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		initView(context);
 		initAttrs(context, attrs);
+		initView(context);
 	}
 
 	private void initView(Context context) {
