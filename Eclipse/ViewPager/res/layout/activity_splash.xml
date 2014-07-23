@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/ll_splash_point"
         style="@style/match_wrap_horizontal"
-        android:layout_alignBottom="@id/vp_splash_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/size_middle"
         android:gravity="center_horizontal" >
     </LinearLayout>

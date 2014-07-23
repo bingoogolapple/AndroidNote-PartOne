@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bvp="http://schemas.android.com/apk/res-auto"
     style="@style/match_match_vertical" >
+
+    <cn.bingoogol.viewpager.ui.view.BingoViewPager
+        android:id="@+id/bvp_main_pager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        bvp:pointAutoPlayAble="true"
+        bvp:pointAutoPlayInterval="3000"
+        bvp:pointContainerBackground="#4000"
+        bvp:pointContainerHeight="@dimen/size_large_large"
+        bvp:pointContainerWidth="match_parent"
+        bvp:pointEdgeSpacing="@dimen/size_middle"
+        bvp:pointFocusedImg="@drawable/point_focused"
+        bvp:pointGravity="bottom|left"
+        bvp:pointSpacing="@dimen/size_small"
+        bvp:pointUnfocusedImg="@drawable/point_unfocused"
+        bvp:pointVisibility="true" />
+
 </LinearLayout>

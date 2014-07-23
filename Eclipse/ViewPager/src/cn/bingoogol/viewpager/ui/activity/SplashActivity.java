@@ -35,6 +35,7 @@ public class SplashActivity extends BaseActivity {
 		mViews.add(inflater.inflate(R.layout.view_splash_one, null));
 		mViews.add(inflater.inflate(R.layout.view_splash_two, null));
 		mViews.add(inflater.inflate(R.layout.view_splash_three, null));
+		mViews.add(inflater.inflate(R.layout.view_splash_four, null));
 
 		mContentVp = (ViewPager) findViewById(R.id.vp_splash_content);
 		mContentVp.setAdapter(new MyAdapter());
@@ -60,7 +61,7 @@ public class SplashActivity extends BaseActivity {
 
 	@Override
 	protected void setListener() {
-		mViews.get(2).findViewById(R.id.btn_splash_three_main).setOnClickListener(this);
+		mViews.get(mViews.size() - 1).findViewById(R.id.btn_splash_three_main).setOnClickListener(this);
 	}
 
 	@Override
