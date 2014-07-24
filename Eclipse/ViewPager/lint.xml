@@ -2,6 +2,7 @@
 <lint>
     <issue id="ClickableViewAccessibility">
         <ignore path="src/cn/bingoogol/viewpager/ui/view/BingoViewPager.java" />
+        <ignore path="src/cn/bingoogol/viewpager/ui/view/BingoViewPagerTimer.java" />
     </issue>
     <issue id="ContentDescription">
         <ignore path="res/layout/activity_splash.xml" />

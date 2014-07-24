@@ -2,9 +2,8 @@ package cn.bingoogol.viewpager.ui.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -23,7 +22,8 @@ import android.widget.RelativeLayout;
 import cn.bingoogol.viewpager.R;
 import cn.bingoogol.viewpager.util.Logger;
 
-public class BingoViewPager extends RelativeLayout {
+public class BingoViewPagerTimer extends RelativeLayout {
+	private static final String TAG = BingoViewPagerTimer.class.getSimpleName();
 	private static final int RMP = RelativeLayout.LayoutParams.MATCH_PARENT;
 	private static final int RWC = RelativeLayout.LayoutParams.WRAP_CONTENT;
 	private static final int LWC = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -48,14 +48,13 @@ public class BingoViewPager extends RelativeLayout {
 			mViewPager.setCurrentItem(msg.what);
 		};
 	};
-//	private Timer mAutoPlayTimer = null;
-	private ScheduledExecutorService mScheduledExecutorService = null;
+	private Timer mAutoPlayTimer = null;
 
-	public BingoViewPager(Context context, AttributeSet attrs) {
+	public BingoViewPagerTimer(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
-	public BingoViewPager(Context context, AttributeSet attrs, int defStyle) {
+	public BingoViewPagerTimer(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initAttrs(context, attrs);
 		initView(context);
@@ -181,7 +180,6 @@ public class BingoViewPager extends RelativeLayout {
 
 	private void processAutoPlay() {
 		if (mAutoPlayAble) {
-			mScheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
 			mViewPager.setOnTouchListener(new OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
@@ -211,41 +209,26 @@ public class BingoViewPager extends RelativeLayout {
 	}
 
 	private void startAutoPlay() {
-		// mIsAutoPlaying = true;
-		// mAutoPlayTimer = new Timer();
-		// mAutoPlayTimer.schedule(new TimerTask() {
-		// @Override
-		// public void run() {
-		// // mViewPager.getChildCount() 获取到的是当前被加载的子控件个数，并不等于mViews.size()
-		// mPagerHandler.sendEmptyMessage((mViewPager.getCurrentItem() + 1) % mViews.size());
-		// }
-		// }, mAutoPlayInterval, mAutoPlayInterval);
 		if (mAutoPlayAble && !mIsAutoPlaying) {
 			mIsAutoPlaying = true;
-			mScheduledExecutorService.scheduleAtFixedRate(new AutoPlayTask(), mAutoPlayInterval, mAutoPlayInterval, TimeUnit.MILLISECONDS);
-		}
-	}
-	
-	private class AutoPlayTask implements Runnable {
-		@Override
-		public void run() {
-			// mViewPager.getChildCount() 获取到的是当前被加载的子控件个数，并不等于mViews.size()
-			mPagerHandler.sendEmptyMessage((mViewPager.getCurrentItem() + 1) % mViews.size());
-			Logger.i("BingoViewPager", "update");
+			mAutoPlayTimer = new Timer();
+			mAutoPlayTimer.schedule(new TimerTask() {
+				@Override
+				public void run() {
+					// mViewPager.getChildCount() 获取到的是当前被加载的子控件个数，并不等于mViews.size()
+					mPagerHandler.sendEmptyMessage((mViewPager.getCurrentItem() + 1) % mViews.size());
+					Logger.i(TAG, "autoPlaying");
+				}
+			}, mAutoPlayInterval, mAutoPlayInterval);
 		}
 	}
 
 	private void stopAutoPlay() {
-		if (mAutoPlayAble && mIsAutoPlaying) {
-			mScheduledExecutorService.shutdown();
+		if (mAutoPlayAble && mIsAutoPlaying && mAutoPlayTimer != null) {
 			mIsAutoPlaying = false;
+			mAutoPlayTimer.cancel();
+			mAutoPlayTimer = null;
 		}
-
-		// if (mAutoPlayTimer != null) {
-		// mIsAutoPlaying = false;
-		// mAutoPlayTimer.cancel();
-		// mAutoPlayTimer = null;
-		// }
 	}
 
 	private void setCurrentPoint(int position) {

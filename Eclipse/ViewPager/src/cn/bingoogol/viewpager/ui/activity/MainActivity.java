@@ -6,16 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import cn.bingoogol.viewpager.R;
-import cn.bingoogol.viewpager.ui.view.BingoViewPager;
+import cn.bingoogol.viewpager.ui.view.BingoViewPagerTimer;
 
 public class MainActivity extends BaseActivity {
-	private BingoViewPager mPagerBvp;
+	private BingoViewPagerTimer mPagerBvp;
 	private ArrayList<View> mViews;
 
 	@Override
 	protected void initView(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_main);
-		mPagerBvp = (BingoViewPager) findViewById(R.id.bvp_main_pager);
+		mPagerBvp = (BingoViewPagerTimer) findViewById(R.id.bvp_main_pager);
 
 		LayoutInflater inflater = getLayoutInflater();
 		mViews = new ArrayList<View>();
