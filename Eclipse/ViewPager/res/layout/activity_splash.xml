@@ -1,16 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/match_match" >
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_splash_content"
-        style="@style/match_match" />
-
-    <LinearLayout
-        android:id="@+id/ll_splash_point"
-        style="@style/match_wrap_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/size_middle"
-        android:gravity="center_horizontal" >
-    </LinearLayout>
-
-</RelativeLayout>
+<cn.bingoogol.viewpager.ui.view.BingoViewPagerExecutor xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bvp="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bvp_splash_pager"
+    style="@style/match_match"
+    bvp:pointContainerBackground="#4000"
+    bvp:pointContainerHeight="@dimen/size_large_large"
+    bvp:pointContainerWidth="match_parent"
+    bvp:pointEdgeSpacing="@dimen/size_middle"
+    bvp:pointFocusedImg="@drawable/point_focused"
+    bvp:pointGravity="bottom|center_horizontal"
+    bvp:pointSpacing="@dimen/size_small"
+    bvp:pointUnfocusedImg="@drawable/point_unfocused"
+    bvp:pointVisibility="true" />

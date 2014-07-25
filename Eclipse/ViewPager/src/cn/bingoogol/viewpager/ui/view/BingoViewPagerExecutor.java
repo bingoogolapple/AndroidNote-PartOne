@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import android.content.Context;
@@ -21,9 +22,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import cn.bingoogol.viewpager.R;
-import cn.bingoogol.viewpager.util.Logger;
 
-public class BingoViewPager extends RelativeLayout {
+public class BingoViewPagerExecutor extends RelativeLayout {
 	private static final int RMP = RelativeLayout.LayoutParams.MATCH_PARENT;
 	private static final int RWC = RelativeLayout.LayoutParams.WRAP_CONTENT;
 	private static final int LWC = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -31,7 +31,7 @@ public class BingoViewPager extends RelativeLayout {
 	private List<View> mViews = null;
 	private LinearLayout mPointContainer = null;
 	private List<ImageView> mPoints = null;
-	private boolean mPointVisibility = true;
+	private boolean mPointVisibility = false;
 	private boolean mAutoPlayAble = false;
 	private boolean mIsAutoPlaying = false;
 	private int mAutoPlayInterval = 2000;
@@ -40,22 +40,23 @@ public class BingoViewPager extends RelativeLayout {
 	private int mPointEdgeSpacing = 15;
 	private int mPointContainerWidth = RMP;
 	private int mPointContainerHeight = RWC;
+	private int mCurrentPoint = 0;
 	private Drawable mPointFocusedDrawable = null;
 	private Drawable mPointUnfocusedDrawable = null;
 	private Drawable mPointContainerBackgroundDrawable = null;
+	private ScheduledExecutorService mScheduledExecutorService = null;
+	private ScheduledFuture<?> mFuture;
 	private Handler mPagerHandler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
 			mViewPager.setCurrentItem(msg.what);
 		};
 	};
-//	private Timer mAutoPlayTimer = null;
-	private ScheduledExecutorService mScheduledExecutorService = null;
 
-	public BingoViewPager(Context context, AttributeSet attrs) {
+	public BingoViewPagerExecutor(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
-	public BingoViewPager(Context context, AttributeSet attrs, int defStyle) {
+	public BingoViewPagerExecutor(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initAttrs(context, attrs);
 		initView(context);
@@ -123,6 +124,11 @@ public class BingoViewPager extends RelativeLayout {
 		addView(mViewPager, new RelativeLayout.LayoutParams(RMP, RMP));
 
 		if (mPointVisibility) {
+			if (mPointFocusedDrawable == null) {
+				throw new RuntimeException("pointFocusedImg is not allowed to be NULL");
+			} else if (mPointUnfocusedDrawable == null) {
+				throw new RuntimeException("pointUnfocusedImg is not allowed to be NULL");
+			}
 			mPointContainer = new LinearLayout(context);
 			mPointContainer.setOrientation(LinearLayout.HORIZONTAL);
 			mPointContainer.setPadding(mPointEdgeSpacing, 0, mPointEdgeSpacing, 0);
@@ -154,12 +160,12 @@ public class BingoViewPager extends RelativeLayout {
 		mViewPager.setAdapter(new MyAdapter());
 		mViewPager.setOnPageChangeListener(new MyListener());
 		if (mPointVisibility) {
-			setPoints();
+			initPoints();
 			processAutoPlay();
 		}
 	}
 
-	private void setPoints() {
+	private void initPoints() {
 		if (mPoints != null) {
 			mPoints.clear();
 			mViewPager.removeAllViews();
@@ -173,10 +179,11 @@ public class BingoViewPager extends RelativeLayout {
 		for (int i = 0; i < mViews.size(); i++) {
 			imageView = new ImageView(getContext());
 			imageView.setLayoutParams(lp);
+			imageView.setImageDrawable(mPointUnfocusedDrawable);
 			mPoints.add(imageView);
 			mPointContainer.addView(imageView);
 		}
-		setCurrentPoint(0);
+		switchToPoint(0);
 	}
 
 	private void processAutoPlay() {
@@ -187,7 +194,6 @@ public class BingoViewPager extends RelativeLayout {
 				public boolean onTouch(View v, MotionEvent event) {
 					switch (event.getAction()) {
 					case MotionEvent.ACTION_DOWN:
-					case MotionEvent.ACTION_MOVE:
 						stopAutoPlay();
 						break;
 					case MotionEvent.ACTION_UP:
@@ -210,56 +216,40 @@ public class BingoViewPager extends RelativeLayout {
 		}
 	}
 
-	private void startAutoPlay() {
-		// mIsAutoPlaying = true;
-		// mAutoPlayTimer = new Timer();
-		// mAutoPlayTimer.schedule(new TimerTask() {
-		// @Override
-		// public void run() {
-		// // mViewPager.getChildCount() 获取到的是当前被加载的子控件个数，并不等于mViews.size()
-		// mPagerHandler.sendEmptyMessage((mViewPager.getCurrentItem() + 1) % mViews.size());
-		// }
-		// }, mAutoPlayInterval, mAutoPlayInterval);
-		if (mAutoPlayAble && !mIsAutoPlaying) {
-			mIsAutoPlaying = true;
-			mScheduledExecutorService.scheduleAtFixedRate(new AutoPlayTask(), mAutoPlayInterval, mAutoPlayInterval, TimeUnit.MILLISECONDS);
+	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		// 记得在这里关闭线程池中的任务（如果不加下面这一行，按返回键回到桌面时还会继续切换）
+		if(mScheduledExecutorService != null) {
+			mScheduledExecutorService.shutdown();
 		}
 	}
-	
-	private class AutoPlayTask implements Runnable {
-		@Override
-		public void run() {
-			// mViewPager.getChildCount() 获取到的是当前被加载的子控件个数，并不等于mViews.size()
-			mPagerHandler.sendEmptyMessage((mViewPager.getCurrentItem() + 1) % mViews.size());
-			Logger.i("BingoViewPager", "update");
+
+	private void startAutoPlay() {
+		if (mAutoPlayAble && !mIsAutoPlaying && mFuture == null) {
+			mIsAutoPlaying = true;
+			mFuture = mScheduledExecutorService.scheduleWithFixedDelay(new Runnable() {
+				@Override
+				public void run() {
+					// mViewPager.getChildCount() 获取到的是当前被加载的子控件个数，并不等于mViews.size()
+					mPagerHandler.sendEmptyMessage((mViewPager.getCurrentItem() + 1) % mViews.size());
+				}
+			}, mAutoPlayInterval, mAutoPlayInterval, TimeUnit.MILLISECONDS);
 		}
 	}
 
 	private void stopAutoPlay() {
-		if (mAutoPlayAble && mIsAutoPlaying) {
-			mScheduledExecutorService.shutdown();
+		if (mAutoPlayAble && mIsAutoPlaying && mFuture != null) {
 			mIsAutoPlaying = false;
+			mFuture.cancel(false);
+			mFuture = null;
 		}
-
-		// if (mAutoPlayTimer != null) {
-		// mIsAutoPlaying = false;
-		// mAutoPlayTimer.cancel();
-		// mAutoPlayTimer = null;
-		// }
 	}
 
-	private void setCurrentPoint(int position) {
-		if (mPointFocusedDrawable == null) {
-			throw new RuntimeException("pointFocusedImg is not allowed to be NULL");
-		} else if (mPointUnfocusedDrawable == null) {
-			throw new RuntimeException("pointUnfocusedImg is not allowed to be NULL");
-		}
-		mPoints.get(position).setImageDrawable(mPointFocusedDrawable);
-		for (int i = 0; i < mViews.size(); i++) {
-			if (position != i) {
-				mPoints.get(i).setImageDrawable(mPointUnfocusedDrawable);
-			}
-		}
+	private void switchToPoint(int newCurrentPoint) {
+		mPoints.get(mCurrentPoint).setImageDrawable(mPointUnfocusedDrawable);
+		mPoints.get(newCurrentPoint).setImageDrawable(mPointFocusedDrawable);
+		mCurrentPoint = newCurrentPoint;
 	}
 
 	private final class MyAdapter extends PagerAdapter {
@@ -321,7 +311,7 @@ public class BingoViewPager extends RelativeLayout {
 		@Override
 		public void onPageSelected(int position) {
 			if (mPointVisibility) {
-				setCurrentPoint(position);
+				switchToPoint(position);
 			}
 		}
 	}

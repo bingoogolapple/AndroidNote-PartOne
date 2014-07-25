@@ -3,7 +3,7 @@
     android:background="#500f" >
 
     <Button
-        android:id="@+id/btn_splash_three_main"
+        android:id="@+id/btn_last_main"
         style="@style/wrap_wrap"
         android:layout_centerInParent="true"
         android:text="进入主界面"
