@@ -32,6 +32,9 @@ public class MainActivity extends BaseActivity {
 		case R.id.btn_main_weixin:
 			startActivity(new Intent(this, WeixinActivity.class));
 			break;
+		case R.id.btn_main_fragment_tab_adapter:
+			startActivity(new Intent(this, FragmentTabAdapterActivity.class));
+			break;
 		case R.id.btn_main_wechat:
 			startActivity(new Intent(this, WechatActivity.class));
 			break;

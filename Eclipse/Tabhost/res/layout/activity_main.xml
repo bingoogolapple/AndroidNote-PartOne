@@ -22,6 +22,12 @@
         android:layout_marginTop="@dimen/size_small"
         android:onClick="onClick"
         android:text="仿旧版微信FragmentTabhost" />
+    <Button
+        android:id="@+id/btn_main_fragment_tab_adapter"
+        style="@style/match_wrap"
+        android:layout_marginTop="@dimen/size_small"
+        android:onClick="onClick"
+        android:text="FragmentTabAdapter" />
     
     <Button
         android:id="@+id/btn_main_wechat"
