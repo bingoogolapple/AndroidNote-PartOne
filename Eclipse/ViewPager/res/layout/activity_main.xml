@@ -6,7 +6,7 @@
     <cn.bingoogol.viewpager.ui.view.BingoViewPagerTimer
         android:id="@+id/bvp_main_pagertimer"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         bvp:pointAutoPlayAble="true"
         bvp:pointAutoPlayInterval="3000"
         bvp:pointContainerBackground="#200a"
@@ -22,7 +22,7 @@
     <cn.bingoogol.viewpager.ui.view.BingoViewPagerExecutor
         android:id="@+id/bvp_main_pagerexecutor1"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_marginTop="@dimen/size_large"
         bvp:pointAutoPlayAble="true"
         bvp:pointAutoPlayInterval="3000"
@@ -39,7 +39,7 @@
     <cn.bingoogol.viewpager.ui.view.BingoViewPagerExecutor
         android:id="@+id/bvp_main_pagerexecutor2"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_marginTop="@dimen/size_large"
         bvp:pointAutoPlayAble="true"
         bvp:pointAutoPlayInterval="3000"
@@ -52,5 +52,11 @@
         bvp:pointSpacing="@dimen/size_small"
         bvp:pointUnfocusedImg="@drawable/point_unfocused"
         bvp:pointVisibility="true" />
+
+    <cn.bingoogol.viewpager.ui.view.WrapContentHeightViewPager
+        android:id="@+id/wchwp_main_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_large" />
 
 </LinearLayout>
