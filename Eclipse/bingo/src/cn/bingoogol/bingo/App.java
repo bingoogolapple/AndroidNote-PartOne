@@ -33,8 +33,7 @@ public class App extends Application {
 		super.onCreate();
 		mInstance = this;
 		SpUtil.init();
-		
-		Thread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandler());
+		Thread.setDefaultUncaughtExceptionHandler(CrashHandler.getInstance());
 	}
 
 	public static App getInstance() {
@@ -102,7 +101,25 @@ public class App extends Application {
 		return installApkIntent;
 	}
 
-	private class MyUncaughtExceptionHandler implements UncaughtExceptionHandler {
+	private static class CrashHandler implements UncaughtExceptionHandler {
+		private static CrashHandler mCrashHandler;
+
+		private CrashHandler() {
+		}
+
+		public static CrashHandler getInstance() {
+			// 单例模式之双重检测
+			if (mCrashHandler == null) {
+				// [1]
+				synchronized (CrashHandler.class) {
+					// 线程一到此之前线程二到达了位置[1]，如果此处不二次判断，那么线程二到达这里的时候还会重新new
+					if (mCrashHandler == null) {
+						mCrashHandler = new CrashHandler();
+					}
+				}
+			}
+			return mCrashHandler;
+		}
 
 		@Override
 		public void uncaughtException(Thread thread, Throwable ex) {
@@ -113,7 +130,7 @@ public class App extends Application {
 				// 这行执行完，file就存在了，所以得在这之前判断文件是否已经存在
 				fw = new FileWriter(file, true);
 				if (!flag) {
-					fw.write("当前应用版本：" + getCurrentVersionName() + "\n");
+					fw.write("当前应用版本：" + mInstance.getCurrentVersionName() + "\n");
 					fw.write("当前设备信息：\n");
 					fw.write(getMobileInfo());
 					fw.write("----------------------------------------------------------------------------\n");
