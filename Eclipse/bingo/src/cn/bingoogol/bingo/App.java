@@ -25,33 +25,33 @@ import cn.bingoogol.bingo.util.StorageUtil;
 
 public class App extends Application {
 	private static final String TAG = App.class.getSimpleName();
-	private static App mInstance;
-	private static LinkedList<Activity> mActivities = new LinkedList<Activity>();
+	private static App sInstance;
+	private static LinkedList<Activity> sActivities = new LinkedList<Activity>();
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		mInstance = this;
+		sInstance = this;
 		SpUtil.init();
 		Thread.setDefaultUncaughtExceptionHandler(CrashHandler.getInstance());
 	}
 
 	public static App getInstance() {
-		return mInstance;
+		return sInstance;
 	}
 
 	public static void addActivity(Activity activity) {
-		mActivities.add(activity);
+		sActivities.add(activity);
 	}
 
 	public static void removeActivity(Activity activity) {
-		mActivities.remove(activity);
+		sActivities.remove(activity);
 	}
 
 	public static void exit() {
 		Activity activity;
-		while (mActivities.size() != 0) {
-			activity = mActivities.poll();
+		while (sActivities.size() != 0) {
+			activity = sActivities.poll();
 			if (!activity.isFinishing()) {
 				activity.finish();
 			}
@@ -102,23 +102,23 @@ public class App extends Application {
 	}
 
 	private static class CrashHandler implements UncaughtExceptionHandler {
-		private static CrashHandler mCrashHandler;
+		private static CrashHandler sSingleton;
 
 		private CrashHandler() {
 		}
 
 		public static CrashHandler getInstance() {
 			// 单例模式之双重检测
-			if (mCrashHandler == null) {
+			if (sSingleton == null) {
 				// [1]
 				synchronized (CrashHandler.class) {
 					// 线程一到此之前线程二到达了位置[1]，如果此处不二次判断，那么线程二到达这里的时候还会重新new
-					if (mCrashHandler == null) {
-						mCrashHandler = new CrashHandler();
+					if (sSingleton == null) {
+						sSingleton = new CrashHandler();
 					}
 				}
 			}
-			return mCrashHandler;
+			return sSingleton;
 		}
 
 		@Override
@@ -130,7 +130,7 @@ public class App extends Application {
 				// 这行执行完，file就存在了，所以得在这之前判断文件是否已经存在
 				fw = new FileWriter(file, true);
 				if (!flag) {
-					fw.write("当前应用版本：" + mInstance.getCurrentVersionName() + "\n");
+					fw.write("当前应用版本：" + sInstance.getCurrentVersionName() + "\n");
 					fw.write("当前设备信息：\n");
 					fw.write(getMobileInfo());
 					fw.write("----------------------------------------------------------------------------\n");
