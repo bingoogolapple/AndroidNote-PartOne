@@ -1,0 +1,38 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    package="cn.bingoogol.actionbar"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Light.NoTitleBar" >
+        <activity
+            android:name="cn.bingoogol.actionbar.ui.activity.MainActivity"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/app_name"
+            android:logo="@drawable/logo_activity_main"
+            android:theme="@style/Theme.Actionbar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cn.bingoogol.actionbar.ui.activity.FeedbackActivity"
+            android:label="@string/actionbar_feedback"
+            android:theme="@style/Theme.Actionbar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cn.bingoogol.actionbar.ui.activity.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>

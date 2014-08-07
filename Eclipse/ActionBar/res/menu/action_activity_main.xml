@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" >
+
+    <item
+        android:id="@+id/actionbar_search"
+        android:icon="@drawable/actionbar_search"
+        android:title="@string/actionbar_search"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"/>
+    <item
+        android:id="@+id/actionbar_plus"
+        android:icon="@drawable/actionbar_plus"
+        android:title="@string/actionbar_plus"
+        app:actionProviderClass="cn.bingoogol.actionbar.ui.view.PlusActionProvider"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/actionbar_video"
+        android:icon="@drawable/actionbar_video"
+        android:title="@string/actionbar_video"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/actionbar_feedback"
+        android:icon="@drawable/actionbar_feedback"
+        android:title="@string/actionbar_feedback"/>
+
+</menu>

@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">ActionBar</string>
+    <string name="weichat">微信</string>
+    <string name="actionbar_search">搜索</string>
+    <string name="actionbar_plus">功能</string>
+    <string name="actionbar_photo">照片</string>
+    <string name="actionbar_camera">照相</string>
+    <string name="actionbar_feedback">反馈</string>
+    <string name="actionbar_video">视频</string>
+
+</resources>
