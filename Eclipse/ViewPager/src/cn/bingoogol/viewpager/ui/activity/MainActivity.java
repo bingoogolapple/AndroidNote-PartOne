@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import cn.bingoogol.viewpager.R;
+import cn.bingoogol.viewpager.ui.view.BingoViewPager;
 import cn.bingoogol.viewpager.ui.view.BingoViewPagerExecutor;
 import cn.bingoogol.viewpager.ui.view.BingoViewPagerTimer;
 import cn.bingoogol.viewpager.ui.view.WrapContentHeightViewPager;
@@ -19,8 +20,8 @@ public class MainActivity extends BaseActivity {
 	private ArrayList<View> mPagerTimerViews;
 	private BingoViewPagerExecutor mPagerExecutor1Bvp;
 	private ArrayList<View> mPagerExecutor1Views;
-	private BingoViewPagerExecutor mPagerExecutor2Bvp;
-	private ArrayList<View> mPagerExecutor2Views;
+	private BingoViewPager mPagerBvp;
+	private ArrayList<View> mPagerViews;
 	private WrapContentHeightViewPager mPagerWchwp;
 	private ArrayList<ImageView> mImageViews;
 
@@ -28,6 +29,7 @@ public class MainActivity extends BaseActivity {
 	protected void initView(Bundle savedInstanceState) {
 		setContentView(R.layout.activity_main);
 		LayoutInflater inflater = getLayoutInflater();
+		// Timer方式实现
 		mPagerTimerViews = new ArrayList<View>();
 		mPagerTimerViews.add(inflater.inflate(R.layout.view_one, null));
 		mPagerTimerViews.add(inflater.inflate(R.layout.view_two, null));
@@ -35,23 +37,23 @@ public class MainActivity extends BaseActivity {
 		mPagerTimerViews.add(inflater.inflate(R.layout.view_four, null));
 		mPagerTimerBvp = (BingoViewPagerTimer) findViewById(R.id.bvp_main_pagertimer);
 		mPagerTimerBvp.setViewPagerViews(mPagerTimerViews);
-
+		// ScheduledExecutorService方式实现
 		mPagerExecutor1Views = new ArrayList<View>();
 		mPagerExecutor1Views.add(inflater.inflate(R.layout.view_one, null));
 		mPagerExecutor1Views.add(inflater.inflate(R.layout.view_two, null));
 		mPagerExecutor1Views.add(inflater.inflate(R.layout.view_three, null));
 		mPagerExecutor1Views.add(inflater.inflate(R.layout.view_four, null));
-		mPagerExecutor1Bvp = (BingoViewPagerExecutor) findViewById(R.id.bvp_main_pagerexecutor1);
+		mPagerExecutor1Bvp = (BingoViewPagerExecutor) findViewById(R.id.bvp_main_pagerexecutor);
 		mPagerExecutor1Bvp.setViewPagerViews(mPagerExecutor1Views);
+		// Handler方式实现
+		mPagerViews = new ArrayList<View>();
+		mPagerViews.add(inflater.inflate(R.layout.view_one, null));
+		mPagerViews.add(inflater.inflate(R.layout.view_two, null));
+		mPagerViews.add(inflater.inflate(R.layout.view_three, null));
+		mPagerViews.add(inflater.inflate(R.layout.view_four, null));
+		mPagerBvp = (BingoViewPager) findViewById(R.id.bvp_main_pager);
+		mPagerBvp.setViewPagerViews(mPagerViews);
 
-		mPagerExecutor2Views = new ArrayList<View>();
-		mPagerExecutor2Views.add(inflater.inflate(R.layout.view_one, null));
-		mPagerExecutor2Views.add(inflater.inflate(R.layout.view_two, null));
-		mPagerExecutor2Views.add(inflater.inflate(R.layout.view_three, null));
-		mPagerExecutor2Views.add(inflater.inflate(R.layout.view_four, null));
-		mPagerExecutor2Bvp = (BingoViewPagerExecutor) findViewById(R.id.bvp_main_pagerexecutor2);
-		mPagerExecutor2Bvp.setViewPagerViews(mPagerExecutor2Views);
-		
 		mImageViews = new ArrayList<ImageView>();
 		mImageViews.add(getImageView(R.drawable.a));
 		mImageViews.add(getImageView(R.drawable.b));

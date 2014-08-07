@@ -20,11 +20,11 @@
         bvp:pointVisibility="true" />
 
     <cn.bingoogol.viewpager.ui.view.BingoViewPagerExecutor
-        android:id="@+id/bvp_main_pagerexecutor1"
+        android:id="@+id/bvp_main_pagerexecutor"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="@dimen/size_large"
-        bvp:pointAutoPlayAble="true"
+        bvp:pointAutoPlayAble="false"
         bvp:pointAutoPlayInterval="3000"
         bvp:pointContainerBackground="#4000"
         bvp:pointContainerHeight="@dimen/size_large_large"
@@ -36,12 +36,12 @@
         bvp:pointUnfocusedImg="@drawable/point_unfocused"
         bvp:pointVisibility="true" />
 
-    <cn.bingoogol.viewpager.ui.view.BingoViewPagerExecutor
-        android:id="@+id/bvp_main_pagerexecutor2"
+    <cn.bingoogol.viewpager.ui.view.BingoViewPager
+        android:id="@+id/bvp_main_pager"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="@dimen/size_large"
-        bvp:pointAutoPlayAble="false"
+        bvp:pointAutoPlayAble="true"
         bvp:pointAutoPlayInterval="3000"
         bvp:pointContainerBackground="#4000"
         bvp:pointContainerHeight="@dimen/size_large_large"
