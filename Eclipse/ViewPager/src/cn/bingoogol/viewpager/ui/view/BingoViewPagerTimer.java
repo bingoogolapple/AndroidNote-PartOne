@@ -180,7 +180,6 @@ public class BingoViewPagerTimer extends RelativeLayout {
 			mPoints.add(imageView);
 			mPointContainer.addView(imageView);
 		}
-		switchToPoint(0);
 	}
 
 	private void processAutoPlay() {
@@ -199,6 +198,9 @@ public class BingoViewPagerTimer extends RelativeLayout {
 					return false;
 				}
 			});
+			mViewPager.setCurrentItem(Integer.MAX_VALUE / 2 - (Integer.MAX_VALUE / 2) % mViews.size());
+		} else {
+			switchToPoint(0);
 		}
 	}
 
@@ -227,7 +229,7 @@ public class BingoViewPagerTimer extends RelativeLayout {
 				@Override
 				public void run() {
 					// mViewPager.getChildCount() 获取到的是当前被加载的子控件个数，并不等于mViews.size()
-					mPagerHandler.sendEmptyMessage((mViewPager.getCurrentItem() + 1) % mViews.size());
+					mPagerHandler.sendEmptyMessage(mViewPager.getCurrentItem() + 1);
 				}
 			}, mAutoPlayInterval, mAutoPlayInterval);
 		}
@@ -252,21 +254,30 @@ public class BingoViewPagerTimer extends RelativeLayout {
 		@Override
 		public int getCount() {
 			// 获取ViewPager的个数，这个方法是必须实现的
-			return mViews.size();
+			return mAutoPlayAble ? Integer.MAX_VALUE : mViews.size();
 		}
 
 		@Override
 		public Object instantiateItem(View container, int position) {
 			// container容器就是ViewPager, position指的是ViewPager的索引
 			// 从View集合中获取对应索引的元素, 并添加到ViewPager中
-			((ViewPager) container).addView(mViews.get(position));
-			return mViews.get(position);
+			if (mAutoPlayAble) {
+				((ViewPager) container).addView(mViews.get(position % mViews.size()));
+				return mViews.get(position % mViews.size());
+			} else {
+				((ViewPager) container).addView(mViews.get(position));
+				return mViews.get(position);
+			}
 		}
 
 		@Override
 		public void destroyItem(View container, int position, Object object) {
 			// 从ViewPager中删除集合中对应索引的View对象
-			((ViewPager) container).removeView(mViews.get(position));
+			if (mAutoPlayAble) {
+				((ViewPager) container).removeView(mViews.get(position % mViews.size()));
+			} else {
+				((ViewPager) container).removeView(mViews.get(position));
+			}
 		}
 
 		@Override
@@ -306,7 +317,11 @@ public class BingoViewPagerTimer extends RelativeLayout {
 		@Override
 		public void onPageSelected(int position) {
 			if (mPointVisibility) {
-				switchToPoint(position);
+				if (mAutoPlayAble) {
+					switchToPoint(position % mViews.size());
+				} else {
+					switchToPoint(position);
+				}
 			}
 		}
 	}
