@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/rl_function_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true" >
+
+        <ImageButton
+            android:id="@+id/ib_add_main"
+            style="@style/MenuItemStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="142dp"
+            android:layout_marginLeft="10.667dp"
+            android:background="@drawable/circle1"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/ib_yyy_main"
+            style="@style/MenuItemStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="120.666dp"
+            android:layout_marginLeft="77.33333333333333dp"
+            android:background="@drawable/circle2"
+            android:visibility="gone" />
+
+        <ImageButton
+            style="@style/MenuItemStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="73.33333333333333dp"
+            android:layout_marginLeft="125.6666666666667dp"
+            android:background="@drawable/circle3"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/ib_exit_main"
+            style="@style/MenuItemStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="8.666666666666667dp"
+            android:layout_marginLeft="144dp"
+            android:background="@drawable/circle4"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/ib_function_main"
+        style="@style/MenuStyle"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/function_bg"
+        android:src="@drawable/function_plus" />
+
+</RelativeLayout>
