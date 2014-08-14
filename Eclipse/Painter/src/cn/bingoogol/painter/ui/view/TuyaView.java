@@ -189,7 +189,7 @@ public class TuyaView extends View {
 		// 将前面已经画过得显示出来
 		canvas.drawBitmap(mTempBitmap, 0, 0, mBitmapPaint);
 		if (mCurrentPath != null && mXfermode == SRC_ATOP_XFERMODE) {
-			mCurrentPath.draw(canvas, mPaint);
+			mCurrentPath.drawPath(canvas, mPaint);
 		}
 	}
 
