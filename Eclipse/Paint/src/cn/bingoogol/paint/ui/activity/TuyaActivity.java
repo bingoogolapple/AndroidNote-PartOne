@@ -1,13 +1,13 @@
-package cn.bingoogol.paintsender.ui.activity;
+package cn.bingoogol.paint.ui.activity;
 
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import cn.bingoogol.paint.R;
-import cn.bingoogol.paintsender.ui.activity.ui.view.TuyaView;
-import cn.bingoogol.paintsender.ui.activity.ui.view.TuyaView.MaskFilterType;
-import cn.bingoogol.paintsender.ui.activity.ui.view.TuyaView.XfermodeType;
+import cn.bingoogol.paint.ui.activity.ui.view.TuyaView;
+import cn.bingoogol.paint.ui.activity.ui.view.TuyaView.MaskFilterType;
+import cn.bingoogol.paint.ui.activity.ui.view.TuyaView.XfermodeType;
 
 public class TuyaActivity extends Activity {
 	private TuyaView mTuyaView;
@@ -53,6 +53,12 @@ public class TuyaActivity extends Activity {
 			break;
 		case R.id.btn_undo:
 			mTuyaView.undo();
+			break;
+		case R.id.btn_save:
+			mTuyaView.save();
+			break;
+		case R.id.btn_recover:
+			mTuyaView.recover();
 			break;
 
 		default:
