@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-public class Path implements Serializable {
+public class SPath implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int color;
 	private float width;
 	private ArrayList<Point> points;
 
-	public Path() {
+	public SPath() {
 	}
 
-	public Path(int color, float width) {
+	public SPath(int color, float width) {
 		this.color = color;
 		this.width = width;
 		points = new ArrayList<Point>();

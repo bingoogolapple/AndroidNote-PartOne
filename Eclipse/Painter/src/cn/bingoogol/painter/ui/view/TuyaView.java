@@ -4,12 +4,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.StreamCorruptedException;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -26,14 +24,13 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Xfermode;
 import android.os.Environment;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
-import cn.bingoogol.painter.model.Path;
+import cn.bingoogol.painter.model.SPath;
 
 public class TuyaView extends View {
 	private static final String TAG = TuyaView.class.getSimpleName();
@@ -41,15 +38,15 @@ public class TuyaView extends View {
 	private static final MaskFilter BLURMASKFILTER = new BlurMaskFilter(5, BlurMaskFilter.Blur.NORMAL);
 	private static final Xfermode CLEAR_XFERMODE = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
 	private static final Xfermode SRC_ATOP_XFERMODE = new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP);
-	// 保存一次一次绘制出来的图形。通过mTempCanvas和mTempPaint将画笔路径保存到mTempBitmap中。在onDraw方法中先将mTempBitmap画到真实的画布中，然后再画mCurrentPath到真实画布中（达到实时显示的效果）
-	private Bitmap mTempBitmap;
-	private Canvas mTempCanvas;
-	private Paint mPaint;
-	private Path mCurrentPath;
+	// 保存一次一次绘制出来的图形。通过mCacheCanvas和mCachePaint将画笔路径保存到mCacheBitmap中。在onDraw方法中先将mCacheBitmap画到真实的画布中，然后再画mCurrentPath到真实画布中（达到实时显示的效果）
+	private Bitmap mCacheBitmap;
+	private Canvas mCacheCanvas;
+	private Paint mCachePaint;
+	private SPath mCurrentPath;
 	// 保存Path路径栈，用于后退步骤
-	private static Stack<Path> mSavePath;
+	private Stack<SPath> mSavePath;
 	// 保存Path路栈,用于前进步骤
-	private static Stack<Path> mCanclePath;
+	private Stack<SPath> mCanclePath;
 	private float mCurrentX;
 	private float mCurrentY;
 	private static final float TOUCH_TOLERANCE = 4;
@@ -69,16 +66,16 @@ public class TuyaView extends View {
 	}
 
 	private void init() {
-		mSavePath = new Stack<Path>();
-		mCanclePath = new Stack<Path>();
-		mTempCanvas = new Canvas();
+		mSavePath = new Stack<SPath>();
+		mCanclePath = new Stack<SPath>();
+		mCacheCanvas = new Canvas();
 		mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 	}
 
 	private void resetTempCanvas() {
 		Log.i(TAG, "resetTempCanvas->getMeasuredWidth = " + getMeasuredWidth() + "   getMeasureHeight = " + getMeasuredHeight() + "  width = " + getWidth() + "   height = " + getHeight());
-		mTempBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
-		mTempCanvas.setBitmap(mTempBitmap);
+		mCacheBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+		mCacheCanvas.setBitmap(mCacheBitmap);
 	}
 
 	@Override
@@ -88,16 +85,16 @@ public class TuyaView extends View {
 	}
 
 	private void initPaint() {
-		mPaint = new Paint();
-		mPaint.setAntiAlias(true);
-		mPaint.setDither(true);
-		mPaint.setStyle(Paint.Style.STROKE);
-		mPaint.setStrokeJoin(Paint.Join.ROUND);
-		mPaint.setStrokeCap(Paint.Cap.ROUND);
-		mPaint.setStrokeWidth(mStrokeWidth);
-		mPaint.setColor(mColor);
-		mPaint.setMaskFilter(mMaskFilter);
-		mPaint.setXfermode(mXfermode);
+		mCachePaint = new Paint();
+		mCachePaint.setAntiAlias(true);
+		mCachePaint.setDither(true);
+		mCachePaint.setStyle(Paint.Style.STROKE);
+		mCachePaint.setStrokeJoin(Paint.Join.ROUND);
+		mCachePaint.setStrokeCap(Paint.Cap.ROUND);
+		mCachePaint.setStrokeWidth(mStrokeWidth);
+		mCachePaint.setColor(mColor);
+		mCachePaint.setMaskFilter(mMaskFilter);
+		mCachePaint.setXfermode(mXfermode);
 	}
 
 	public void setColor(int color) {
@@ -153,12 +150,12 @@ public class TuyaView extends View {
 	private void onTouchStart(float x, float y) {
 		initPaint();
 		// 每一次记录的路径对象是不一样的
-		mCurrentPath = new Path(mColor, mStrokeWidth);
+		mCurrentPath = new SPath(mColor, mStrokeWidth);
 		mCurrentPath.moveTo(x, y);
 		mCurrentX = x;
 		mCurrentY = y;
 		if (isSaveDrawPath()) {
-			mCurrentPath.draw(mTempCanvas, mPaint);
+			mCurrentPath.draw(mCacheCanvas, mCachePaint);
 		}
 		invalidate();
 	}
@@ -171,7 +168,7 @@ public class TuyaView extends View {
 			mCurrentX = x;
 			mCurrentY = y;
 			if (isSaveDrawPath()) {
-				mCurrentPath.draw(mTempCanvas, mPaint);
+				mCurrentPath.draw(mCacheCanvas, mCachePaint);
 			}
 			invalidate();
 		}
@@ -193,9 +190,9 @@ public class TuyaView extends View {
 	@Override
 	public void onDraw(Canvas canvas) {
 		// 将前面已经画过得显示出来
-		canvas.drawBitmap(mTempBitmap, 0, 0, mBitmapPaint);
+		canvas.drawBitmap(mCacheBitmap, 0, 0, mBitmapPaint);
 		if (mCurrentPath != null && mXfermode == SRC_ATOP_XFERMODE) {
-			mCurrentPath.drawPath(canvas, mPaint);
+			mCurrentPath.drawPath(canvas, mCachePaint);
 		}
 	}
 
@@ -220,9 +217,9 @@ public class TuyaView extends View {
 	private void rePaint() {
 		initPaint();
 		resetTempCanvas();
-		Iterator<Path> iter = mSavePath.iterator();
+		Iterator<SPath> iter = mSavePath.iterator();
 		while (iter.hasNext()) {
-			iter.next().drawPath(mTempCanvas, mPaint);
+			iter.next().drawPath(mCacheCanvas, mCachePaint);
 		}
 		mCurrentPath = null;
 		invalidate();
@@ -254,7 +251,7 @@ public class TuyaView extends View {
 		try {
 			FileInputStream fis = new FileInputStream(sdFile);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			mSavePath = (Stack<Path>) ois.readObject();
+			mSavePath = (Stack<SPath>) ois.readObject();
 			ois.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -292,7 +289,7 @@ public class TuyaView extends View {
 				ByteArrayInputStream bis = new ByteArrayInputStream(stringToBytes);
 				ObjectInputStream ois = new ObjectInputStream(bis);
 				// 返回反序列化得到的对象
-				mSavePath = (Stack<Path>) ois.readObject();
+				mSavePath = (Stack<SPath>) ois.readObject();
 				ois.close();
 			}
 		} catch (Exception e) {
