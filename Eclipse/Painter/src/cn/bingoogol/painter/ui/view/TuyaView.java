@@ -20,6 +20,7 @@ import android.graphics.Color;
 import android.graphics.EmbossMaskFilter;
 import android.graphics.MaskFilter;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Xfermode;
@@ -30,6 +31,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+import cn.bingoogol.painter.model.Point;
 import cn.bingoogol.painter.model.SPath;
 
 public class TuyaView extends View {
@@ -42,7 +44,8 @@ public class TuyaView extends View {
 	private Bitmap mCacheBitmap;
 	private Canvas mCacheCanvas;
 	private Paint mCachePaint;
-	private SPath mCurrentPath;
+	private Path mCurrentPath;
+	private SPath mCurrentSPath;
 	// 保存Path路径栈，用于后退步骤
 	private Stack<SPath> mSavePath;
 	// 保存Path路栈,用于前进步骤
@@ -150,12 +153,16 @@ public class TuyaView extends View {
 	private void onTouchStart(float x, float y) {
 		initPaint();
 		// 每一次记录的路径对象是不一样的
-		mCurrentPath = new SPath(mColor, mStrokeWidth);
+		mCurrentSPath = new SPath(mColor, mStrokeWidth);
+		mCurrentSPath.moveTo(x, y);
+
+		mCurrentPath = new Path();
 		mCurrentPath.moveTo(x, y);
 		mCurrentX = x;
 		mCurrentY = y;
 		if (isSaveDrawPath()) {
-			mCurrentPath.draw(mCacheCanvas, mCachePaint);
+			// mCurrentSPath.draw(mCacheCanvas, mCachePaint);
+			mCacheCanvas.drawPath(mCurrentPath, mCachePaint);
 		}
 		invalidate();
 	}
@@ -164,11 +171,14 @@ public class TuyaView extends View {
 		float dx = Math.abs(x - mCurrentX);
 		float dy = Math.abs(mCurrentY - y);
 		if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
-			mCurrentPath.moveTo(x, y);
+			mCurrentPath.quadTo(mCurrentX, mCurrentY, (x + mCurrentX) / 2, (y + mCurrentY) / 2);
+
+			mCurrentSPath.moveTo(x, y);
 			mCurrentX = x;
 			mCurrentY = y;
 			if (isSaveDrawPath()) {
-				mCurrentPath.draw(mCacheCanvas, mCachePaint);
+				// mCurrentSPath.draw(mCacheCanvas, mCachePaint);
+				mCacheCanvas.drawPath(mCurrentPath, mCachePaint);
 			}
 			invalidate();
 		}
@@ -177,9 +187,10 @@ public class TuyaView extends View {
 	private void onTouchUp() {
 		if (isSaveDrawPath()) {
 			// 将一条完整的路径保存下来
-			mSavePath.push(mCurrentPath);
+			mSavePath.push(mCurrentSPath);
 		}
 		mCurrentPath = null;
+		mCurrentSPath = null;
 		invalidate();
 	}
 
@@ -191,8 +202,11 @@ public class TuyaView extends View {
 	public void onDraw(Canvas canvas) {
 		// 将前面已经画过得显示出来
 		canvas.drawBitmap(mCacheBitmap, 0, 0, mBitmapPaint);
+		// if (mCurrentSPath != null && mXfermode == SRC_ATOP_XFERMODE) {
+		// mCurrentSPath.drawPath(canvas, mCachePaint);
+		// }
 		if (mCurrentPath != null && mXfermode == SRC_ATOP_XFERMODE) {
-			mCurrentPath.drawPath(canvas, mCachePaint);
+			canvas.drawPath(mCurrentPath, mCachePaint);
 		}
 	}
 
@@ -214,12 +228,34 @@ public class TuyaView extends View {
 		return false;
 	}
 
+	// private void rePaint() {
+	// initPaint();
+	// resetTempCanvas();
+	// Iterator<SPath> iter = mSavePath.iterator();
+	// while (iter.hasNext()) {
+	// iter.next().drawPath(mCacheCanvas, mCachePaint);
+	// }
+	// mCurrentSPath = null;
+	// invalidate();
+	// }
+
 	private void rePaint() {
-		initPaint();
 		resetTempCanvas();
 		Iterator<SPath> iter = mSavePath.iterator();
 		while (iter.hasNext()) {
-			iter.next().drawPath(mCacheCanvas, mCachePaint);
+			SPath spath = iter.next();
+			mColor = spath.color;
+			mStrokeWidth = spath.width;
+			initPaint();
+			Path path = new Path();
+			int size = spath.points.size();
+			if (size > 0) {
+				path.moveTo(spath.points.get(0).x, spath.points.get(0).y);
+				for (int i = 1; i < size; i++) {
+					path.quadTo(spath.points.get(i - 1).x, spath.points.get(i - 1).y, (spath.points.get(i).x + spath.points.get(i - 1).x) / 2, (spath.points.get(i).y + spath.points.get(i - 1).y) / 2);
+				}
+				mCacheCanvas.drawPath(path, mCachePaint);
+			}
 		}
 		mCurrentPath = null;
 		invalidate();

@@ -9,9 +9,9 @@ import android.graphics.Paint;
 public class SPath implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	private int color;
-	private float width;
-	private ArrayList<Point> points;
+	public int color;
+	public float width;
+	public ArrayList<Point> points;
 
 	public SPath() {
 	}
