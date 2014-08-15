@@ -1,5 +1,7 @@
 package cn.bingoogol.painter.ui.view;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,10 +9,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
 import java.util.Iterator;
 import java.util.Stack;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
@@ -22,7 +26,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Xfermode;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -230,28 +236,65 @@ public class TuyaView extends View {
 		CLEARXFERMODE, SRCATOPXFERMODE, NONEXFERMODE
 	}
 
-	public void save() {
-		File sdFile = new File(Environment.getExternalStorageDirectory(), "oauth_1.out");
+	public void save2SDCard() {
+		File sdFile = new File(Environment.getExternalStorageDirectory(), "painter.out");
 		try {
 			FileOutputStream fos = new FileOutputStream(sdFile);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(mSavePath);
 			fos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		Toast.makeText(getContext(), "成功保存到sd卡", Toast.LENGTH_SHORT).show();
 	}
 
-	public void recover() {
-		File sdFile = new File(Environment.getExternalStorageDirectory(), "oauth_1.out");
+	public void recoverFromSDCard() {
+		File sdFile = new File(Environment.getExternalStorageDirectory(), "painter.out");
 		try {
 			FileInputStream fis = new FileInputStream(sdFile);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			mSavePath = (Stack<Path>) ois.readObject();
 			ois.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		rePaint();
+	}
+
+	public void save2Sp() {
+		try {
+			// 保存对象
+			SharedPreferences.Editor sharedata = getContext().getSharedPreferences("Painter", Context.MODE_PRIVATE).edit();
+			// 先将序列化结果写到byte缓存中，其实就分配一个内存空间
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ObjectOutputStream os = new ObjectOutputStream(bos);
+			// 将对象序列化写入byte缓存
+			os.writeObject(mSavePath);
+			// 将序列化的数据转为16进制保存
+			String bytesToHexString = Base64.encodeToString(bos.toByteArray(), Base64.DEFAULT);
+			// 保存该16进制数组
+			sharedata.putString("paint", bytesToHexString);
+			sharedata.commit();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Toast.makeText(getContext(), "成功保存到sp", Toast.LENGTH_SHORT).show();
+	}
+
+	public void recoverFromSp() {
+		try {
+			SharedPreferences sp = getContext().getSharedPreferences("Painter", Context.MODE_PRIVATE);
+			if (sp.contains("paint")) {
+				String string = sp.getString("paint", "");
+				// 将16进制的数据转为数组，准备反序列化
+				byte[] stringToBytes = Base64.decode(string, Base64.DEFAULT);
+				ByteArrayInputStream bis = new ByteArrayInputStream(stringToBytes);
+				ObjectInputStream ois = new ObjectInputStream(bis);
+				// 返回反序列化得到的对象
+				mSavePath = (Stack<Path>) ois.readObject();
+				ois.close();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

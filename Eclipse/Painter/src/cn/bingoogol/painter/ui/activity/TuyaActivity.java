@@ -54,11 +54,17 @@ public class TuyaActivity extends Activity {
 		case R.id.btn_undo:
 			mTuyaView.undo();
 			break;
-		case R.id.btn_save:
-			mTuyaView.save();
+		case R.id.btn_save2sdcard:
+			mTuyaView.save2SDCard();
 			break;
-		case R.id.btn_recover:
-			mTuyaView.recover();
+		case R.id.btn_recoverfromsdcard:
+			mTuyaView.recoverFromSDCard();
+			break;
+		case R.id.btn_save2sp:
+			mTuyaView.save2Sp();
+			break;
+		case R.id.btn_recoverfromsp:
+			mTuyaView.recoverFromSp();
 			break;
 
 		default:

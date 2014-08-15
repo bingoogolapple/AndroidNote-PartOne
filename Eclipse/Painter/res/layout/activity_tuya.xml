@@ -122,20 +122,42 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/btn_save"
+            android:id="@+id/btn_save2sdcard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="Save" />
+            android:text="Save2SDCard" />
 
         <Button
-            android:id="@+id/btn_recover"
+            android:id="@+id/btn_recoverfromsdcard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="Recover" />
+            android:text="RecoverFromSDCard" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_save2sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="Save2Sp" />
+
+        <Button
+            android:id="@+id/btn_recoverfromsp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="RecoverFromSp" />
     </LinearLayout>
 
     <cn.bingoogol.painter.ui.view.TuyaView
