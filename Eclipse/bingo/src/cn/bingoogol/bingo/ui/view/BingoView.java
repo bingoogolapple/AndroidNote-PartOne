@@ -18,10 +18,6 @@ public class BingoView extends View {
 		initView(context);
 	}
 
-	private void initView(Context context) {
-		//View view = View.inflate(context, R.layout., this);
-	}
-
 	private void initAttrs(Context context, AttributeSet attrs) {
 		TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BingoView);
 		final int count = typedArray.getIndexCount();
@@ -35,5 +31,9 @@ public class BingoView extends View {
 			}
 		}
 		typedArray.recycle();
+	}
+	
+	private void initView(Context context) {
+		//View view = View.inflate(context, R.layout., this);
 	}
 }
