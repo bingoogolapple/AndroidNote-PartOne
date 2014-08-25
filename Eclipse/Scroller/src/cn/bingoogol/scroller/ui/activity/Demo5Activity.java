@@ -31,7 +31,7 @@ public class Demo5Activity extends Activity {
 			imageView = new ImageView(mContext);
 			imageView.setScaleType(ScaleType.FIT_XY);
 			imageView.setImageResource(imagesArray[i]);
-			layoutParams = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+			layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 			imageView.setLayoutParams(layoutParams);
 			mScrollLauncherViewGroup.addView(imageView);
 		}
