@@ -54,7 +54,6 @@ public class RecyclerViewActivity extends BaseActivity {
 		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 		// 设置布局管理器
 		recyclerView.setLayoutManager(layoutManager);
-
 		// 创建数据集
 		String[] dataset = new String[100];
 		for (int i = 0; i < dataset.length; i++) {
