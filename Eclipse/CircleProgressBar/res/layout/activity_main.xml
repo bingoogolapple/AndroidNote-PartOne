@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cpb="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_main_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:layout_margin="10dp"
+        android:text="开始" />
+
+    <cn.bingoogol.circleprogressbar.ui.view.CircleProgressBar
+        android:id="@+id/cpb_main_progressbar"
+        cpb:max="200"
+        cpb:textColor="@android:color/white"
+        cpb:progress="56"
+        cpb:textSize="15sp"
+        cpb:circleColor="#900f"
+        cpb:ringColor="#500f"
+        cpb:strokeWidth="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+
+</LinearLayout>
