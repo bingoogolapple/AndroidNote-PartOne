@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical"
+    android:background="#18171B" >
+
+    <TextView
+        style="@style/match_wrap"
+        android:background="#212025"
+        android:gravity="center"
+        android:padding="@dimen/size_middle"
+        android:text="DMC"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_middle" />
+
+    <LinearLayout
+        style="@style/match_match_vertical"
+        android:layout_margin="@dimen/size_small"
+        android:background="#29282D" >
+
+        <ListView
+            android:id="@+id/lv_main_device"
+            style="@style/match_match"
+            android:layout_marginBottom="@dimen/size_small"
+            android:divider="#29282D"
+            android:dividerHeight="@dimen/size_divider"
+            android:listSelector="@android:color/transparent" >
+        </ListView>
+    </LinearLayout>
+
+</LinearLayout>

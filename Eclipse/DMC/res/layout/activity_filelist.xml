@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match_vertical"
+    android:background="#18171B" >
+
+    <TextView
+        style="@style/match_wrap"
+        android:background="#212025"
+        android:gravity="center"
+        android:padding="@dimen/size_middle"
+        android:text="DMC"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_middle" />
+
+    <LinearLayout
+        style="@style/match_match_vertical"
+        android:layout_margin="@dimen/size_small"
+        android:background="#29282D" >
+
+        <ExpandableListView
+            android:id="@+id/elv_filelist_filelist"
+            style="@style/match_auto"
+            android:childDivider="#29282D"
+            android:clickable="true"
+            android:divider="#29282D"
+            android:dividerHeight="@dimen/size_divider"
+            android:listSelector="@android:color/transparent" >
+        </ExpandableListView>
+
+        <LinearLayout style="@style/match_wrap_horizontal" >
+
+            <Button
+                android:id="@+id/btn_filelist_pause"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/size_small"
+                android:text="暂停" />
+
+            <Button
+                android:id="@+id/btn_filelist_stop"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/size_small"
+                android:text="停止" />
+
+            <Button
+                android:id="@+id/btn_filelist_subvoice"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/size_small"
+                android:text="减音量" />
+
+            <Button
+                android:id="@+id/btn_filelist_addvoice"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/size_small"
+                android:text="加音量" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/match_wrap_horizontal" >
+
+            <Button
+                android:id="@+id/btn_filelist_mute"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/size_small"
+                android:text="静音" />
+
+            <Button
+                android:id="@+id/btn_filelist_mute_cancel"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/size_small"
+                android:text="取消静音" />
+
+            <Button
+                android:id="@+id/btn_filelist_seek"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/size_small"
+                android:text="定位到10秒" />
+
+            <Button
+                android:id="@+id/btn_filelist_goon"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/size_small"
+                android:text="goon" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

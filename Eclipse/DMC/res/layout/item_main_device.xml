@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_wrap_horizontal"
+    android:background="#3D3D41" >
+
+    <TextView
+        android:id="@+id/tv_item_main_device_name"
+        style="@style/match_wrap"
+        android:gravity="left"
+        android:padding="@dimen/size_middle"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_small" />
+
+</LinearLayout>
